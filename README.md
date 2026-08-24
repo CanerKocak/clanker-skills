@@ -27,13 +27,13 @@ license files.
 flowchart TD
     request["Change request"] --> route["adaptive-code-orchestrator"]
     route --> chain["edit-the-chain"]
-    chain --> graph["semantic-blast-radius"]
-    graph --> structure["ast-grep-callchain-audit"]
-    graph --> surfaces["call-chain-invariants"]
+    chain --> impact["semantic-blast-radius"]
+    impact --> structure["ast-grep-callchain-audit"]
+    impact --> surfaces["call-chain-invariants"]
     structure --> change["Smallest correct change"]
     surfaces --> change
-    change --> diff["differential-review"]
-    diff --> gate["yagni-anti-ceremonial"]
+    change --> review["differential-review"]
+    review --> gate["yagni-anti-ceremonial"]
     change --> thermo["thermo-nuclear-code-quality-review"]
 ```
 
