@@ -1,0 +1,5 @@
+interface:
+  display_name: "PDF Typst Report"
+  short_description: "Typeset long technical reports with Typst"
+  brand_color: "#D7FF64"
+  default_prompt: "Use $pdf-typst-report to typeset this long technical report with a stable, professional layout."

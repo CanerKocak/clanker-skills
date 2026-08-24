@@ -1,0 +1,5 @@
+interface:
+  display_name: "YAGNI Anti-Ceremonial"
+  short_description: "Reject speculative guards and recovery rails"
+  brand_color: "#D7FF64"
+  default_prompt: "Use $yagni-anti-ceremonial to classify this proposed guard, fallback, or recovery path against the current contract."

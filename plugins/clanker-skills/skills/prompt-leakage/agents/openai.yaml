@@ -1,0 +1,5 @@
+interface:
+  display_name: "Prompt Leakage"
+  short_description: "Remove transcript residue from durable prose"
+  brand_color: "#D7FF64"
+  default_prompt: "Use $prompt-leakage to remove transcript residue from this README, comment, or commit message."

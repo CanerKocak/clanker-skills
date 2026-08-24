@@ -1,0 +1,5 @@
+interface:
+  display_name: "Edit the Chain"
+  short_description: "Map ownership and impact before non-trivial edits"
+  brand_color: "#D7FF64"
+  default_prompt: "Use $edit-the-chain to map the real call chain, implement the direct fix, and bind review to the final candidate."

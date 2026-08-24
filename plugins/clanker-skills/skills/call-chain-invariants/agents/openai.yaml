@@ -1,0 +1,5 @@
+interface:
+  display_name: "Call-Chain Invariants"
+  short_description: "Classify product surfaces that share an invariant"
+  brand_color: "#D7FF64"
+  default_prompt: "Use $call-chain-invariants to classify which reachable product surfaces share this invariant."

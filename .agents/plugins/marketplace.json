@@ -1,0 +1,20 @@
+{
+  "name": "clanker-skills",
+  "interface": {
+    "displayName": "Clanker Skills"
+  },
+  "plugins": [
+    {
+      "name": "clanker-skills",
+      "source": {
+        "source": "local",
+        "path": "./plugins/clanker-skills"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}

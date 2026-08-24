@@ -1,0 +1,5 @@
+interface:
+  display_name: "Differential Review"
+  short_description: "Review code changes for security regressions"
+  brand_color: "#D7FF64"
+  default_prompt: "Use $differential-review to perform a security-focused review of this branch against its baseline."

@@ -1,0 +1,5 @@
+interface:
+  display_name: "PDF Security Audit Report"
+  short_description: "Render frozen findings as a security assessment"
+  brand_color: "#D7FF64"
+  default_prompt: "Use $pdf-security-audit-report to turn these frozen findings into a professional security assessment PDF."

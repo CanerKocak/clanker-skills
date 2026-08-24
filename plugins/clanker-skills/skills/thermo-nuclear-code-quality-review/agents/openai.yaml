@@ -1,0 +1,5 @@
+interface:
+  display_name: "Thermo-Nuclear Code Quality Review"
+  short_description: "Run two coherence checks on the final candidate"
+  brand_color: "#D7FF64"
+  default_prompt: "Use $thermo-nuclear-code-quality-review to run both final-candidate coherence passes before delivery."

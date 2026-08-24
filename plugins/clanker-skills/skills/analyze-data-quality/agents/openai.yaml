@@ -1,0 +1,7 @@
+interface:
+  display_name: "Analyze Data Quality"
+  short_description: "Assess tables and datasets before analysis or publication"
+  brand_color: "#D7FF64"
+  default_prompt: "Use $analyze-data-quality to assess this dataset or table before I rely on it for analysis or reporting."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,39 @@
+name: Bug report
+description: Report incorrect routing, broken assets, or unsafe skill behavior
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: Thank you for providing a reproducible report.
+  - type: input
+    id: skill
+    attributes:
+      label: Affected skill
+      description: Give the package name, or write repository if the issue is shared.
+      placeholder: edit-the-chain
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Include the request, relevant repository state, and exact command or workflow.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed behavior
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Add logs, screenshots, paths, or a minimal repository when available.

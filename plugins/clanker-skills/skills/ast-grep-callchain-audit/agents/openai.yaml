@@ -1,0 +1,5 @@
+interface:
+  display_name: "AST-Grep Call-Chain Audit"
+  short_description: "Trace code structure with AST-backed evidence"
+  brand_color: "#D7FF64"
+  default_prompt: "Use $ast-grep-callchain-audit to trace definitions, callers, imports, and structural variants in this codebase."

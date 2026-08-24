@@ -1,0 +1,34 @@
+{
+  "name": "clanker-skills",
+  "version": "0.1.0",
+  "description": "Evidence-first engineering workflows for OpenAI Codex.",
+  "author": {
+    "name": "Caner Kocak",
+    "url": "https://github.com/CanerKocak"
+  },
+  "homepage": "https://github.com/CanerKocak/clanker-skills#readme",
+  "repository": "https://github.com/CanerKocak/clanker-skills",
+  "keywords": [
+    "agent-skills",
+    "codex",
+    "codex-skills",
+    "code-review",
+    "security-audit",
+    "static-analysis"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Clanker Skills",
+    "shortDescription": "Evidence-first engineering workflows for Codex.",
+    "longDescription": "A curated collection of 16 Codex skills for code review, call-chain analysis, security audits, data quality, PDF reporting, and frontend quality.",
+    "developerName": "Caner Kocak",
+    "category": "Developer Tools",
+    "capabilities": [],
+    "defaultPrompt": [
+      "Review this repository change with evidence-first workflows.",
+      "Map the blast radius before editing a shared contract.",
+      "Turn frozen security findings into a verified PDF report."
+    ],
+    "brandColor": "#D7FF64"
+  }
+}

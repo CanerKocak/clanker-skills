@@ -1,0 +1,5 @@
+interface:
+  display_name: "Uncodixfy"
+  short_description: "Remove generic AI patterns from frontend UI"
+  brand_color: "#D7FF64"
+  default_prompt: "Use $uncodixfy to revise this frontend so its layout, hierarchy, spacing, motion, and color feel product-specific."

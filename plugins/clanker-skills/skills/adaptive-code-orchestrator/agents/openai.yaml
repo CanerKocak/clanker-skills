@@ -1,0 +1,5 @@
+interface:
+  display_name: "Adaptive Code Orchestrator"
+  short_description: "Scale coding work only when evidence justifies it"
+  brand_color: "#D7FF64"
+  default_prompt: "Use $adaptive-code-orchestrator to plan and execute this repository change with the right amount of agent coordination."

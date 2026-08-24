@@ -1,0 +1,5 @@
+interface:
+  display_name: "PDF Visual QA"
+  short_description: "Inspect rendered PDFs for layout defects"
+  brand_color: "#D7FF64"
+  default_prompt: "Use $pdf-visual-qa to render and inspect this PDF for clipping, overlap, contrast, and overflow defects."

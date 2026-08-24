@@ -1,0 +1,32 @@
+name: Skill proposal
+description: Propose a focused workflow that is not already covered
+title: "[Skill]: "
+body:
+  - type: input
+    id: problem
+    attributes:
+      label: Repeated problem
+      description: What recurring task needs a durable workflow?
+    validations:
+      required: true
+  - type: textarea
+    id: gap
+    attributes:
+      label: Existing coverage gap
+      description: Explain why the current 16 skills do not already own this work.
+    validations:
+      required: true
+  - type: textarea
+    id: contract
+    attributes:
+      label: Proposed contract
+      description: State the trigger, required evidence, outputs, and important failure boundaries.
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Validation plan
+      description: How could a reviewer falsify the workflow's claimed result?
+    validations:
+      required: true

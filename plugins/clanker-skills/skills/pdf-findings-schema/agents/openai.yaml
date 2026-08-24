@@ -1,0 +1,5 @@
+interface:
+  display_name: "PDF Findings Schema"
+  short_description: "Freeze security findings before report rendering"
+  brand_color: "#D7FF64"
+  default_prompt: "Use $pdf-findings-schema to validate and freeze these security findings before report generation."
