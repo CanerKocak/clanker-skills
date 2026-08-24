@@ -1,0 +1,4 @@
+interface:
+  display_name: "Semantic Blast Radius"
+  short_description: "Map bounded cross-file change impact"
+  default_prompt: "Use $semantic-blast-radius to map the changed contract, its callers, implementations, dependents, and tests with bounded deterministic graph queries, then report every coverage limit."
