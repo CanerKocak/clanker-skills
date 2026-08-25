@@ -16,6 +16,12 @@ from urllib.parse import unquote
 ROOT = Path(__file__).resolve().parents[1]
 PLUGIN = ROOT / "plugins" / "clanker-skills"
 SKILLS = PLUGIN / "skills"
+PLATFORM_SKILL_ROOTS = {
+    "claude-code": ROOT / "platforms" / "claude-code" / "skills",
+    "opencode": ROOT / "platforms" / "opencode" / ".opencode" / "skills",
+    "pi": ROOT / "platforms" / "pi" / "skills",
+    "grok": ROOT / "platforms" / "grok" / ".grok" / "skills",
+}
 EXPECTED_SKILLS = (
     "adaptive-code-orchestrator",
     "analyze-data-quality",
@@ -32,6 +38,7 @@ EXPECTED_SKILLS = (
     "semantic-blast-radius",
     "thermo-nuclear-code-quality-review",
     "uncodixfy",
+    "writing-plans",
     "yagni-anti-ceremonial",
 )
 UNCODIXFY_UPSTREAM_BLOBS = {
@@ -93,8 +100,13 @@ def frontmatter(document: Path, errors: list[str]) -> str:
 
 
 def validate_inventory(errors: list[str]) -> None:
+    skill_roots = {"codex": SKILLS, **PLATFORM_SKILL_ROOTS}
     expected_paths = tuple(
-        f"plugins/clanker-skills/skills/{name}/SKILL.md" for name in EXPECTED_SKILLS
+        sorted(
+            f"{root.relative_to(ROOT).as_posix()}/{name}/SKILL.md"
+            for root in skill_roots.values()
+            for name in EXPECTED_SKILLS
+        )
     )
     discovered_paths = tuple(
         sorted(
@@ -105,19 +117,25 @@ def validate_inventory(errors: list[str]) -> None:
     )
     if discovered_paths != expected_paths:
         missing_paths = sorted(set(expected_paths) - set(discovered_paths))
-        noncanonical_paths = sorted(set(discovered_paths) - set(expected_paths))
+        unexpected_paths = sorted(set(discovered_paths) - set(expected_paths))
         errors.append(
-            "canonical skill paths mismatch; "
-            f"missing={missing_paths}, noncanonical={noncanonical_paths}"
+            "skill entrypoint paths mismatch; "
+            f"missing={missing_paths}, unexpected={unexpected_paths}"
         )
 
-    discovered = tuple(
-        sorted(path.parent.name for path in SKILLS.glob("*/SKILL.md") if path.is_file())
-    )
-    if discovered != EXPECTED_SKILLS:
-        missing = sorted(set(EXPECTED_SKILLS) - set(discovered))
-        unexpected = sorted(set(discovered) - set(EXPECTED_SKILLS))
-        errors.append(f"skill inventory mismatch; missing={missing}, unexpected={unexpected}")
+    for label, root in skill_roots.items():
+        if not root.is_dir():
+            errors.append(f"{root.relative_to(ROOT)}: missing {label} skills directory")
+            continue
+        discovered = tuple(
+            sorted(path.parent.name for path in root.glob("*/SKILL.md") if path.is_file())
+        )
+        if discovered != EXPECTED_SKILLS:
+            missing = sorted(set(EXPECTED_SKILLS) - set(discovered))
+            unexpected = sorted(set(discovered) - set(EXPECTED_SKILLS))
+            errors.append(
+                f"{label} skill inventory mismatch; missing={missing}, unexpected={unexpected}"
+            )
 
 
 def validate_skills(errors: list[str]) -> None:
@@ -163,6 +181,58 @@ def validate_skills(errors: list[str]) -> None:
             errors.append(
                 f"{ui_file.relative_to(ROOT)}: default_prompt must mention ${skill_name}"
             )
+
+
+def file_tree(
+    directory: Path, errors: list[str], *, exclude_parts: frozenset[str] = frozenset()
+) -> dict[Path, bytes]:
+    """Read a package tree while rejecting symlinked source or mirror files."""
+    if directory.is_symlink():
+        errors.append(f"{directory.relative_to(ROOT)}: must not be a symlink")
+        return {}
+    files: dict[Path, bytes] = {}
+    for path in sorted(directory.rglob("*")):
+        relative = path.relative_to(directory)
+        if path.is_symlink():
+            errors.append(f"{path.relative_to(ROOT)}: must not be a symlink")
+            continue
+        if exclude_parts.intersection(relative.parts) or not path.is_file():
+            continue
+        files[relative] = path.read_bytes()
+    return files
+
+
+def validate_native_packages(errors: list[str]) -> None:
+    """Require every native tree to equal the portable canonical payload."""
+    for skill_name in EXPECTED_SKILLS:
+        source_dir = SKILLS / skill_name
+        if not source_dir.is_dir():
+            continue
+        source_files = file_tree(source_dir, errors, exclude_parts=frozenset({"agents"}))
+        for platform, platform_root in PLATFORM_SKILL_ROOTS.items():
+            mirror_dir = platform_root / skill_name
+            if not mirror_dir.is_dir():
+                errors.append(f"{mirror_dir.relative_to(ROOT)}: missing native skill package")
+                continue
+            mirror_files = file_tree(mirror_dir, errors)
+            missing = sorted(set(source_files) - set(mirror_files))
+            unexpected = sorted(set(mirror_files) - set(source_files))
+            for relative in missing:
+                errors.append(
+                    f"{platform}/{skill_name}: missing mirrored file {relative.as_posix()}"
+                )
+            for relative in unexpected:
+                errors.append(
+                    f"{platform}/{skill_name}: unexpected mirrored file {relative.as_posix()}"
+                )
+            for relative in sorted(set(source_files).intersection(mirror_files)):
+                if source_files[relative] != mirror_files[relative]:
+                    source_digest = hashlib.sha256(source_files[relative]).hexdigest()[:12]
+                    mirror_digest = hashlib.sha256(mirror_files[relative]).hexdigest()[:12]
+                    errors.append(
+                        f"{platform}/{skill_name}: stale mirrored file {relative.as_posix()} "
+                        f"({mirror_digest} != {source_digest})"
+                    )
 
 
 def validate_plugin(errors: list[str]) -> None:
@@ -263,11 +333,110 @@ def validate_plugin(errors: list[str]) -> None:
             errors.append("marketplace category must be Developer Tools")
 
 
+def json_object(path: Path, errors: list[str]) -> dict[str, object] | None:
+    """Load a small JSON manifest and reject absent or non-object documents."""
+    if not path.is_file():
+        errors.append(f"{path.relative_to(ROOT)}: missing")
+        return None
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        errors.append(f"{path.relative_to(ROOT)}: invalid JSON: {exc}")
+        return None
+    if not isinstance(payload, dict):
+        errors.append(f"{path.relative_to(ROOT)}: JSON root must be an object")
+        return None
+    return payload
+
+
+def validate_platform_manifests(errors: list[str]) -> None:
+    """Validate each runtime's native entrypoint or configuration example."""
+    package_path = ROOT / "package.json"
+    pi_package = json_object(package_path, errors)
+    if pi_package is not None:
+        if pi_package.get("name") != "clanker-skills":
+            errors.append("package.json: name must be clanker-skills")
+        if not re.fullmatch(r"\d+\.\d+\.\d+", str(pi_package.get("version", ""))):
+            errors.append("package.json: version must use semantic versioning")
+        if pi_package.get("private") is not True:
+            errors.append("package.json: private must be true")
+        keywords = pi_package.get("keywords")
+        if not isinstance(keywords, list) or "pi-package" not in keywords:
+            errors.append("package.json: keywords must include pi-package")
+        pi = pi_package.get("pi")
+        if not isinstance(pi, dict) or pi.get("skills") != ["./platforms/pi/skills"]:
+            errors.append("package.json: pi.skills must point to ./platforms/pi/skills")
+
+    claude_manifest_path = (
+        ROOT / "platforms" / "claude-code" / ".claude-plugin" / "plugin.json"
+    )
+    claude_manifest = json_object(claude_manifest_path, errors)
+    if claude_manifest is not None:
+        if claude_manifest.get("name") != "clanker-skills":
+            errors.append("Claude Code plugin name must be clanker-skills")
+        if not re.fullmatch(r"\d+\.\d+\.\d+", str(claude_manifest.get("version", ""))):
+            errors.append("Claude Code plugin version must use semantic versioning")
+        for field in ("description", "homepage", "repository"):
+            value = claude_manifest.get(field)
+            if not isinstance(value, str) or not value.strip():
+                errors.append(f"Claude Code plugin {field} must be a non-empty string")
+        for field in ("homepage", "repository"):
+            value = claude_manifest.get(field)
+            if isinstance(value, str) and not value.startswith("https://"):
+                errors.append(f"Claude Code plugin {field} must use https")
+        author = claude_manifest.get("author")
+        if not isinstance(author, dict) or not isinstance(author.get("name"), str):
+            errors.append("Claude Code plugin author.name must be present")
+
+    opencode_path = ROOT / "platforms" / "opencode" / "opencode.example.json"
+    opencode = json_object(opencode_path, errors)
+    if opencode is not None:
+        if opencode.get("$schema") != "https://opencode.ai/config.json":
+            errors.append("OpenCode example must use the official config schema")
+        skills = opencode.get("skills")
+        if not isinstance(skills, dict) or skills.get("paths") != [
+            "/absolute/path/to/clanker-skills/platforms/opencode/.opencode/skills"
+        ]:
+            errors.append("OpenCode example must use skills.paths for its native directory")
+
+    pi_settings_path = ROOT / "platforms" / "pi" / "settings.example.json"
+    pi_settings = json_object(pi_settings_path, errors)
+    if pi_settings is not None:
+        if pi_settings.get("skills") != [
+            "/absolute/path/to/clanker-skills/platforms/pi/skills"
+        ]:
+            errors.append("Pi example must point to its native skills directory")
+        if pi_settings.get("enableSkillCommands") is not True:
+            errors.append("Pi example must enable skill commands")
+
+    grok_path = ROOT / "platforms" / "grok" / "config.example.toml"
+    if not grok_path.is_file():
+        errors.append(f"{grok_path.relative_to(ROOT)}: missing")
+    else:
+        expected_grok_config = (
+            "[skills]\n"
+            "paths = [\"/absolute/path/to/clanker-skills/platforms/grok/.grok/skills\"]"
+        )
+        if grok_path.read_text(encoding="utf-8").strip() != expected_grok_config:
+            errors.append("Grok Build example must contain one native [skills] path")
+
+
 def validate_catalog_surfaces(errors: list[str]) -> None:
     readme_path = ROOT / "README.md"
     routing_path = ROOT / "docs" / "global-routing.md"
     manifest_path = PLUGIN / ".codex-plugin" / "plugin.json"
-    required_paths = (readme_path, routing_path, manifest_path)
+    platforms_readme_path = ROOT / "platforms" / "README.md"
+    package_guides = tuple(
+        ROOT / "platforms" / platform / "README.md" for platform in PLATFORM_SKILL_ROOTS
+    )
+    required_paths = (
+        readme_path,
+        routing_path,
+        manifest_path,
+        platforms_readme_path,
+        *package_guides,
+        ROOT / "scripts" / "sync_platform_packages.py",
+    )
     missing_paths = [path for path in required_paths if not path.is_file()]
     for path in missing_paths:
         errors.append(f"{path.relative_to(ROOT)}: missing catalog surface")
@@ -292,10 +461,19 @@ def validate_catalog_surfaces(errors: list[str]) -> None:
                 f"docs/global-routing.md: expected one routing entry for ${skill_name}"
             )
 
-    if f"Its {skill_count} agent skills" not in readme:
+    if f"collection of {skill_count} evidence-first" not in readme:
         errors.append("README.md: introductory skill count is stale")
     if f"skills-{skill_count}-" not in readme:
         errors.append("README.md: skill-count badge is stale")
+    if "agent_runtimes-5-" not in readme:
+        errors.append("README.md: runtime-count badge is stale")
+    for platform in PLATFORM_SKILL_ROOTS:
+        guide_target = f"platforms/{platform}/README.md"
+        if guide_target not in readme:
+            errors.append(f"README.md: missing package guide for {platform}")
+        guide_path = ROOT / guide_target
+        if guide_path.is_file() and "writing-plans" not in guide_path.read_text(encoding="utf-8"):
+            errors.append(f"{guide_target}: missing writing-plans discovery guidance")
     interface = manifest.get("interface") if isinstance(manifest, dict) else None
     long_description = interface.get("longDescription", "") if isinstance(interface, dict) else ""
     if f"of {skill_count} Codex skills" not in long_description:
@@ -375,6 +553,7 @@ def validate_provenance(errors: list[str]) -> None:
         notices = notices_path.read_text(encoding="utf-8")
         required = (
             "plugins/clanker-skills/skills/uncodixfy",
+            "platforms/",
             "https://github.com/cyxzdev/Uncodixfy",
             "e0e028058b5259debdd94b78147c6d6c77bf7da2",
             "MIT License",
@@ -406,7 +585,9 @@ def main() -> int:
     errors: list[str] = []
     validate_inventory(errors)
     validate_skills(errors)
+    validate_native_packages(errors)
     validate_plugin(errors)
+    validate_platform_manifests(errors)
     validate_catalog_surfaces(errors)
     validate_links(errors)
     validate_provenance(errors)
@@ -419,8 +600,8 @@ def main() -> int:
         return 1
 
     print(
-        f"Validated {len(EXPECTED_SKILLS)} skills, plugin metadata, local links, "
-        "provenance, and the social preview."
+        f"Validated {len(EXPECTED_SKILLS)} skills across {len(PLATFORM_SKILL_ROOTS)} "
+        "native packages, metadata, local links, provenance, and the social preview."
     )
     return 0
 

@@ -7,7 +7,8 @@ It routes work by contract and avoids invoking adjacent skills without a reason.
 ## Evidence-first skill routing
 
 Select the smallest installed workflow that matches the task and read its
-`SKILL.md` before acting. Use `$adaptive-code-orchestrator` for uncertain,
+`SKILL.md` before acting. For a multi-step specification, use `$writing-plans`
+before implementation. Use `$adaptive-code-orchestrator` for uncertain,
 cross-cutting, or high-risk work. For non-trivial code changes,
 `$edit-the-chain` owns the change workflow, `$semantic-blast-radius` owns the
 impact graph, `$ast-grep-callchain-audit` contributes structural edges, and

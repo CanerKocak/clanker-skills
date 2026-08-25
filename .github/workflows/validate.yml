@@ -13,5 +13,7 @@ jobs:
     steps:
       - name: Check out the repository
         uses: actions/checkout@v7
-      - name: Validate skills and plugin metadata
+      - name: Verify generated native packages
+        run: python3 scripts/sync_platform_packages.py --check
+      - name: Validate skills, packages, and metadata
         run: python3 scripts/validate_repository.py

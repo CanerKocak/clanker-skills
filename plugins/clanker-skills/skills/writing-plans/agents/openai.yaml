@@ -1,0 +1,5 @@
+interface:
+  display_name: "Writing Plans"
+  short_description: "Turn requirements into testable implementation plans"
+  brand_color: "#D7FF64"
+  default_prompt: "Use $writing-plans to turn this specification into a concrete implementation plan."

@@ -6,15 +6,18 @@ reviewed directly.
 
 ## Before opening a pull request
 
-1. Keep every package under `plugins/clanker-skills/skills/<skill-name>/`.
+1. Treat `plugins/clanker-skills/skills/<skill-name>/` as the canonical source.
+   Do not manually edit generated mirrors under `platforms/`.
 2. Preserve the package's `SKILL.md`, `agents/openai.yaml`, and any referenced
    scripts, references, templates, assets, or license files as one unit.
 3. Keep the frontmatter `name` equal to the directory name. Use lowercase
    letters, numbers, and hyphens only.
 4. Give `agents/openai.yaml` a specific 25–64 character short description and
    a default prompt that explicitly names `$<skill-name>`.
-5. Run `python3 scripts/validate_repository.py` from the repository root.
-6. Describe the user-facing contract that changed and the evidence used to
+5. Run `python3 scripts/sync_platform_packages.py` after changing canonical
+   portable content, then run `python3 scripts/sync_platform_packages.py --check`.
+6. Run `python3 scripts/validate_repository.py` from the repository root.
+7. Describe the user-facing contract that changed and the evidence used to
    verify it.
 
 ## Third-party material

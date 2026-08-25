@@ -1,0 +1,11 @@
+{
+  "name": "clanker-skills",
+  "version": "0.2.0",
+  "description": "Evidence-first engineering skills for code review, audits, data quality, reports, and UI work.",
+  "author": {
+    "name": "Caner Kocak",
+    "url": "https://github.com/CanerKocak"
+  },
+  "homepage": "https://github.com/CanerKocak/clanker-skills#readme",
+  "repository": "https://github.com/CanerKocak/clanker-skills"
+}

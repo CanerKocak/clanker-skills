@@ -1,0 +1,21 @@
+{
+  "name": "clanker-skills",
+  "version": "0.2.0",
+  "description": "Evidence-first agent skills for code review, audits, data quality, reports, and UI work.",
+  "private": true,
+  "keywords": [
+    "pi-package",
+    "agent-skills",
+    "coding-agents",
+    "codex",
+    "claude-code",
+    "opencode",
+    "grok",
+    "pi"
+  ],
+  "pi": {
+    "skills": [
+      "./platforms/pi/skills"
+    ]
+  }
+}

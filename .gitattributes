@@ -1,0 +1,5 @@
+# Generated mirrors preserve source bytes, including intentional Markdown hard-break spaces.
+platforms/claude-code/skills/** -whitespace
+platforms/opencode/.opencode/skills/** -whitespace
+platforms/pi/skills/** -whitespace
+platforms/grok/.grok/skills/** -whitespace

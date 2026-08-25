@@ -1,0 +1,6 @@
+{
+  "skills": [
+    "/absolute/path/to/clanker-skills/platforms/pi/skills"
+  ],
+  "enableSkillCommands": true
+}
