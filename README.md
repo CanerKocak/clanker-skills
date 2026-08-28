@@ -7,12 +7,12 @@
 
   <p>
     <a href="https://github.com/CanerKocak/clanker-skills/actions/workflows/validate.yml"><img src="https://github.com/CanerKocak/clanker-skills/actions/workflows/validate.yml/badge.svg" alt="Repository validation status"></a>
-    <img src="https://img.shields.io/badge/skills-17-D7FF64?style=flat-square&labelColor=101310" alt="17 bundled skills">
+    <img src="https://img.shields.io/badge/skills-13-D7FF64?style=flat-square&labelColor=101310" alt="13 bundled skills">
     <img src="https://img.shields.io/badge/agent_runtimes-5-D7FF64?style=flat-square&labelColor=101310" alt="Five supported agent runtimes">
   </p>
 </div>
 
-Clanker Skills is a curated collection of 17 evidence-first software-engineering
+Clanker Skills is a curated collection of 13 evidence-first software-engineering
 workflows for Codex, Claude Code, OpenCode, Pi, and Grok Build. The same
 portable skill payload is shipped in each runtime's native layout, so a
 workflow retains its scripts, references, templates, assets, and licenses
@@ -20,8 +20,8 @@ wherever it is installed.
 
 The collection is for work where a successful command is not sufficient
 evidence. It helps an agent identify the owner before editing, map reachable
-surfaces, validate analytical inputs, freeze audit findings before rendering,
-inspect finished PDFs, and remove chat residue from durable prose.
+surfaces, validate analytical inputs, organize comparable evidence in tables,
+and remove chat residue from durable prose.
 
 > [!NOTE]
 > This is a community-maintained project. It is not affiliated with or endorsed
@@ -127,8 +127,8 @@ project-local installation, including discovery with <code>grok inspect</code>.
 
 Most failures in agent-driven engineering are not syntax failures. They come
 from editing the wrong owner, missing another caller, trusting a partial
-dataset, promoting a weak suspicion into a security finding, or declaring a
-document complete without looking at the rendered artifact.
+dataset, promoting a weak suspicion into a security finding, or hiding
+important differences inside unstructured prose.
 
 Clanker Skills contributes four recurring controls:
 
@@ -136,8 +136,9 @@ Clanker Skills contributes four recurring controls:
   product surfaces before changing a shared contract.
 - **Independent evidence.** Reconcile compiler or language-server evidence
   with AST and text searches instead of treating one heuristic as exhaustive.
-- **Frozen inputs before publishing.** Separate business context, analytical
-  validation, security findings, report rendering, and visual QA.
+- **Structured evidence before conclusions.** Put comparable findings,
+  mappings, status, and verification into tables whose rows remain tied to
+  observed evidence.
 - **Restraint before ceremony.** Reject speculative guards, recovery rails,
   generic UI patterns, and prose that merely narrates the work session.
 
@@ -163,12 +164,6 @@ flowchart TD
     L -->|No| M[gather-business-context]
     L -->|Yes| N[analyze-data-quality]
     M --> N
-    C -->|Audit PDF| O[pdf-findings-schema]
-    O --> P[pdf-security-audit-report]
-    P --> Q{Rendering path}
-    Q -->|Typst| R[pdf-typst-report]
-    Q -->|Other renderer| S[pdf-visual-qa]
-    R --> S
     C -->|Frontend or durable prose| T[uncodixfy or prompt-leakage]
 ~~~
 
@@ -198,15 +193,6 @@ work should stay small.
 | [<code>gather-business-context</code>](plugins/clanker-skills/skills/gather-business-context/SKILL.md) | Missing definitions, source authority, ownership, recent changes, or decision framing. | Retrieves only the context needed downstream, preserves source conflicts, and does not disguise retrieval as analysis. |
 | [<code>analyze-data-quality</code>](plugins/clanker-skills/skills/analyze-data-quality/SKILL.md) | Tables, financial equations, dashboards, query results, or analytical evidence. | Establishes grain and checks completeness, uniqueness, validity, consistency, integrity, freshness, distributions, and reconciliation boundaries. |
 
-### Security reporting and PDFs
-
-| Skill | Use it for | Core contract |
-| --- | --- | --- |
-| [<code>pdf-findings-schema</code>](plugins/clanker-skills/skills/pdf-findings-schema/SKILL.md) | Freezing security findings before report layout begins. | Defines canonical JSON so rendering cannot invent findings, evidence, status, or severity. |
-| [<code>pdf-security-audit-report</code>](plugins/clanker-skills/skills/pdf-security-audit-report/SKILL.md) | Turning frozen findings into a security assessment report. | Builds report structure from validated data and keeps severity and remediation claims traceable to evidence. |
-| [<code>pdf-typst-report</code>](plugins/clanker-skills/skills/pdf-typst-report/SKILL.md) | Stable typesetting for long technical or security reports. | Provides a Typst-first report path and hands the rendered result to the visual-quality gate. |
-| [<code>pdf-visual-qa</code>](plugins/clanker-skills/skills/pdf-visual-qa/SKILL.md) | Any generated PDF approaching delivery. | Renders pages to pixels and rejects clipping, overlap, overflow, weak contrast, and other visible defects. |
-
 ### Interface and durable prose
 
 | Skill | Use it for | Core contract |
@@ -219,17 +205,19 @@ work should stay small.
 After installing the Codex plugin, add the repository's single
 [evidence-first routing block](docs/global-routing.md) to your global
 <code>~/.codex/AGENTS.md</code>. It maps work by contract, including
-<code>$writing-plans</code> for multi-step specifications, and makes clear
-when not to invoke adjacent workflows.
+<code>$writing-plans</code> for multi-step specifications, establishes the
+table-first output contract, and makes clear when not to invoke adjacent
+workflows.
 
 ## Repository structure
 
 ~~~text
 .agents/plugins/marketplace.json            Codex marketplace catalog
 .github/assets/social-preview.png           Repository brand card
+AGENTS.md                                    Table-first output contract
 plugins/clanker-skills/
 ├── .codex-plugin/plugin.json               Codex plugin identity and UI metadata
-└── skills/<name>/                          Canonical source for all 17 skills
+└── skills/<name>/                          Canonical source for all 13 skills
     ├── SKILL.md                            Trigger and workflow contract
     ├── agents/openai.yaml                  Codex display metadata
     └── references|scripts|templates|...    Package-owned resources
@@ -264,8 +252,6 @@ without an explicit update.
 
 - <code>ast-grep-callchain-audit</code> expects the maintained
   <code>ast-grep</code> binary.
-- The PDF report path may call a separately installed <code>pdf</code> base
-  skill for ReportLab operations. Typst is optional and used only when selected.
 - <code>edit-the-chain</code> includes an optional <code>codex exec</code>
   review helper. Non-Codex runtimes retain the workflow and must use their
   native isolated-review mechanism for that optional execution path.

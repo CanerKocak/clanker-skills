@@ -1,7 +1,7 @@
 {
   "name": "clanker-skills",
   "version": "0.2.0",
-  "description": "Evidence-first agent skills for code review, audits, data quality, reports, and UI work.",
+  "description": "Evidence-first agent skills for planning, code review, audits, data quality, and UI work.",
   "private": true,
   "keywords": [
     "pi-package",

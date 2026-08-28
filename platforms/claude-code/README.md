@@ -1,7 +1,7 @@
 # Claude Code package
 
 This is a standalone Claude Code plugin. Its `skills/` directory contains all
-17 Clanker Skills and their supporting files. Claude Code namespaces plugin
+13 Clanker Skills and their supporting files. Claude Code namespaces plugin
 skills under `clanker-skills`.
 
 ## Use from a clone

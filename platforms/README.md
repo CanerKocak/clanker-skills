@@ -1,6 +1,6 @@
 # Native platform packages
 
-Each package contains the complete portable payload for the same 17 skills:
+Each package contains the complete portable payload for the same 13 skills:
 `SKILL.md`, scripts, references, templates, assets, and third-party licenses.
 The portable source lives in `plugins/clanker-skills/skills`; generated mirrors
 must be refreshed with `python3 scripts/sync_platform_packages.py` rather than

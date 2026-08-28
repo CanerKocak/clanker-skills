@@ -1,7 +1,7 @@
 # Pi package
 
 The repository root is a Pi package. Its `package.json` declares the native
-`platforms/pi/skills` tree through `pi.skills`, so Pi can install all 17 skills
+`platforms/pi/skills` tree through `pi.skills`, so Pi can install all 13 skills
 from Git without an npm publication.
 
 ## Install globally

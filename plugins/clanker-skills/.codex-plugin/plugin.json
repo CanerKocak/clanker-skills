@@ -24,7 +24,7 @@
   "interface": {
     "displayName": "Clanker Skills",
     "shortDescription": "Evidence-first engineering workflows for Codex.",
-    "longDescription": "A curated collection of 17 Codex skills for planning, code review, call-chain analysis, security audits, data quality, PDF reporting, and frontend quality, with native packages for Claude Code, OpenCode, Pi, and Grok Build.",
+    "longDescription": "A curated collection of 13 Codex skills for planning, code review, call-chain analysis, security audits, data quality, and frontend quality, with native packages for Claude Code, OpenCode, Pi, and Grok Build.",
     "developerName": "Caner Kocak",
     "category": "Developer Tools",
     "capabilities": [],
@@ -32,7 +32,7 @@
       "Review this repository change with evidence-first workflows.",
       "Turn this specification into a testable implementation plan.",
       "Map the blast radius before editing a shared contract.",
-      "Turn frozen security findings into a verified PDF report."
+      "Present comparable findings and verification in an evidence table."
     ],
     "brandColor": "#D7FF64"
   }
