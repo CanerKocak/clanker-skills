@@ -6,7 +6,8 @@ description: >
   Determine applicability and the current contract before producer and inventory
   checks; include code, manual, migration, replay, recovery, and external
   producers. Use when reviewing decision-changing feedback or touching money,
-  auth, remediation, dead paths, or legacy state.
+  auth, remediation, dead paths, or legacy state. Also use when drafting issues
+  or plans that turn findings into proposed work or acceptance criteria.
 ---
 
 # YAGNI and anti-ceremonial gate
@@ -19,6 +20,43 @@ Use native repository search plus semantic-blast-radius for producers and
 consumers. Use an authorized database skill for inventory. Use
 migration-apply-time when a migration's mutability matters. Do not depend on a
 named navigation tool that is unavailable in the current environment.
+
+## Issue and plan scope gate
+
+For a writing-only task, use existing evidence first. Do not launch a code audit
+or inventory sweep merely to polish an issue. Apply the technical decision order
+below when a material claim needs further verification; otherwise state the
+specific evidence limit.
+
+Before turning a finding into requested work:
+
+1. Identify the requested outcome and destination audience. Separate the user's
+   requested breadth from findings that merely appeared in the same research.
+2. Check what is already completed in the relevant deployment. Keep completed
+   work as brief context only when it changes the remaining task; do not reopen
+   it as an acceptance criterion without new evidence.
+3. Distinguish observed behavior, demonstrated contract violations, and policy
+   proposals. A different fee, limit, or behavior in a sibling path does not by
+   itself prove a defect or require symmetry. Preserve unresolved policy as a
+   concrete decision, not an implementation instruction.
+4. Keep requirements that are necessary for the requested outcome. Put unrelated
+   findings outside the candidate's requirements. If the user explicitly asks
+   for related status or a combined issue, include it with clear scope; do not
+   turn independent work into a completion dependency by accident.
+5. Test each reference, status row, and acceptance criterion for a reader-facing
+   purpose: does it change understanding, verification, ownership, or action?
+   Remove research chronology and decorative provenance. Preserve evidence and
+   uncertainty that materially affect the decision. Use prompt-leakage for
+   whether retained references depend on access to the source conversation.
+
+A configured value proves configuration, not adequacy against operating costs.
+A recommendation proves a proposal, not that it was adopted for every path.
+Do not inflate a narrow issue with a new fee framework, telemetry project,
+governance process, or generic test checklist without a demonstrated need.
+
+Before delivery, compare the title, body, and completion criteria: all must
+express the same remaining scope. Report only the useful conclusion and evidence
+limits; the full classification worksheet is not required in an issue draft.
 
 ## Mandatory decision order
 
