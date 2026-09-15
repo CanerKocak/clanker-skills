@@ -1,7 +1,19 @@
-# Global Codex routing
+# Global skill routing
 
-Add the following section to `~/.codex/AGENTS.md` after installing the plugin.
-It routes work by contract and avoids invoking adjacent skills without a reason.
+Add the following section to your harness's global instructions after installing
+the package. It routes work by contract and avoids invoking adjacent skills without
+a reason.
+
+| Harness | Where to put it |
+| --- | --- |
+| Codex | Append to `~/.codex/AGENTS.md` |
+| Claude Code | Append to `~/.claude/CLAUDE.md` |
+| OpenCode | Add the file to the `instructions` array in `~/.config/opencode/opencode.json` |
+| Pi / Grok Build | Append to the harness's global instructions file |
+
+Skill references below use the `$name` form as the skill ID; invoke each skill
+with your harness's native syntax (for example, the `skill` tool by exact ID
+in OpenCode).
 
 ```markdown
 ## Table-first output

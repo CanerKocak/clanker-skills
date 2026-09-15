@@ -200,11 +200,11 @@ work should stay small.
 | [<code>uncodixfy</code>](plugins/clanker-skills/skills/uncodixfy/SKILL.md) | Generating or revising frontend HTML, CSS, React, Vue, Svelte, or product UI. | Avoids generic agent-generated dashboard patterns in favor of product-specific hierarchy, spacing, motion, and color. |
 | [<code>prompt-leakage</code>](plugins/clanker-skills/skills/prompt-leakage/SKILL.md) | Comments, READMEs, instructions, review text, and commit messages. | Removes chat motives, restatements, and reviewer theater while retaining information that a stranger cannot infer. |
 
-## Make routing automatic in Codex
+## Make routing automatic
 
-After installing the Codex plugin, add the repository's single
-[evidence-first routing block](docs/global-routing.md) to your global
-<code>~/.codex/AGENTS.md</code>. It maps work by contract, including
+After installing a package, add the repository's single
+[evidence-first routing block](docs/global-routing.md) to your harness's global
+instructions. It maps work by contract, including
 <code>$writing-plans</code> for multi-step specifications, establishes the
 table-first output contract, and makes clear when not to invoke adjacent
 workflows.
