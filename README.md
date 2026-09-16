@@ -203,6 +203,25 @@ work should stay small.
 | [<code>prompt-leakage</code>](plugins/clanker-skills/skills/prompt-leakage/SKILL.md) | Comments, READMEs, instructions, review text, and commit messages. | Removes chat motives, restatements, and reviewer theater while retaining information that a stranger cannot infer. |
 | [<code>simple-english</code>](plugins/clanker-skills/skills/simple-english/SKILL.md) | Any draft a human reads. | Enforces short sentences and runs a redundancy self-check against 24 tautology and pleonasm patterns. |
 
+## Install with clank
+
+`scripts/clank.py` installs the skills headlessly: it clones the repository
+and wires it into your harnesses. It never prompts; agents should pass
+`--json`. `CLANK_REPO`, `CLANK_REF`, and `CLANK_DIR` override the defaults.
+
+```sh
+python3 scripts/clank.py install --harness opencode,pi --json
+python3 scripts/clank.py update --json
+python3 scripts/clank.py status --json
+python3 scripts/clank.py remove --harness pi
+python3 scripts/clank.py remove --purge --force
+```
+
+`install` patches OpenCode, Pi, and Grok Build configs and prints the one
+manual step for Claude Code and Codex. `update` fast-forwards the clone and
+refuses a dirty tree. `remove` unwires; `--purge` also deletes the clone.
+Run `python3 scripts/test_clank.py` to exercise the whole matrix isolated.
+
 ## Make routing automatic
 
 After installing a package, add the repository's single

@@ -1,7 +1,7 @@
 # Grok Build package
 
 This package uses Grok Build's native `.grok/skills/<name>/SKILL.md` layout.
-All 13 skills remain user-invocable as slash commands and available for
+All 16 skills remain user-invocable as slash commands and available for
 automatic selection from their descriptions.
 
 ## Add the package globally
