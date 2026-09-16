@@ -42,6 +42,7 @@ fallbacks with `$yagni-anti-ceremonial`, and finish source changes with both
 passes of `$thermo-nuclear-code-quality-review`. When analysis lacks business
 framing, run `$gather-business-context` before `$analyze-data-quality`. Apply
 `$uncodixfy` to frontend UI work and `$prompt-leakage` to comments,
-READMEs, durable instructions, and commit text. Do not invoke adjacent skills
+READMEs, durable instructions, and commit text. Use `$git-hygiene` for commits,
+branches, history rewrites, and human-readable issues and reviews. Do not invoke adjacent skills
 ceremonially.
 ```

@@ -30,6 +30,7 @@ EXPECTED_SKILLS = (
     "differential-review",
     "edit-the-chain",
     "gather-business-context",
+    "git-hygiene",
     "prompt-leakage",
     "semantic-blast-radius",
     "thermo-nuclear-code-quality-review",

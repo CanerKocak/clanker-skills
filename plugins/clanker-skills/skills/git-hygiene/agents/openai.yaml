@@ -1,0 +1,5 @@
+interface:
+  display_name: "Git Hygiene"
+  short_description: "Human-readable git history, issues, and reviews"
+  brand_color: "#D7FF64"
+  default_prompt: "Use $git-hygiene to clean up these commits and rewrite this issue in plain words."
