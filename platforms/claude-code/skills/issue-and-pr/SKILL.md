@@ -25,16 +25,15 @@ and teach readers to skim past them. Instead, say what is happening, what
 should change, and what done looks like, in whatever order fits this case.
 Short reports need only a few sentences; only complex work earns a heading,
 and even then the heading names the thought, not the template slot. Tables
-and sections are tools, not scaffolding: an issue may use a table where it
-makes evidence digestible at a glance, while a pull request stays plain
-sentences all the way through.
+are tools, not scaffolding: both issues and pull requests use a table where
+it makes evidence digestible at a glance, per Default to tables.
 
 ## Issues
 
 Start from something observed, not something felt. Name the behavior, where
 it happens, and the conditions around it: file paths, commands, measured
-numbers with their machine and date. A table earns its place when it makes
-evidence digestible at a glance: measurements, comparisons, before-and-after.
+numbers with their machine and date. A table is required when there are two
+or more comparable entries: measurements, comparisons, before-and-after.
 One row per item, short cells, counts taken from the displayed rows. Never a
 table for a single fact. Then describe the change you want and
 how to recognize it working. If the reader would need your chat history to
@@ -43,11 +42,12 @@ of the chat and into the text.
 
 ## Pull requests
 
-Say what changed and why, in that order. Name how it was verified: the exact
-commands run and what they printed. Tell the reviewer where to look first
-and what kind of feedback helps (correctness, edge cases, wording). No tables
-and no sections here: plain sentences, short enough to read in one pass. Keep the
-diff narrow enough that approval means something.
+Say what changed and why, in that order, in plain sentences short enough to
+read in one pass. Then use a table for the review evidence whenever there
+are two or more comparable entries: verification commands and what they
+printed, files or areas to look at first, and edge cases checked. One row
+per item, short cells. Keep the diff narrow enough that approval means
+something.
 
 ## How eyes read
 
@@ -70,7 +70,8 @@ make the meaning faster to find, or it goes.
 Point at things a stranger can open. Never link a private conversation or
 paste a transcript and call it context. Screen recordings and logs help only
 with the conditions attached. Uncertainty stays visible: mark guesses as
-guesses instead of writing around them.
+guesses instead of writing around them. Run $prompt-leakage on the final
+draft so no chat motive, restatement, or conversation-dependency survives.
 
 ## Simple English
 
