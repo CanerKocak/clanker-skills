@@ -43,6 +43,7 @@ passes of `$thermo-nuclear-code-quality-review`. When analysis lacks business
 framing, run `$gather-business-context` before `$analyze-data-quality`. Apply
 `$uncodixfy` to frontend UI work and `$prompt-leakage` to comments,
 READMEs, durable instructions, and commit text. Use `$git-hygiene` for commits,
-branches, history rewrites, and human-readable issues and reviews. Do not invoke adjacent skills
+branches, and history rewrites, and `$issue-and-pr` for human-readable issues,
+pull requests, and reviews. Do not invoke adjacent skills
 ceremonially.
 ```

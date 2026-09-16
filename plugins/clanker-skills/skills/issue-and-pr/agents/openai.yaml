@@ -1,0 +1,5 @@
+interface:
+  display_name: "Issue and PR"
+  short_description: "Plain-words engineering tasks, not form filling"
+  brand_color: "#D7FF64"
+  default_prompt: "Use $issue-and-pr to rewrite this issue as a plain-words engineering task."

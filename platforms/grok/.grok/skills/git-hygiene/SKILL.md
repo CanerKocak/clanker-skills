@@ -1,9 +1,10 @@
 ---
 name: git-hygiene
 description: >
-  Keep git history and review prose human-readable. Use when committing,
-  branching, rewriting history, or writing issues and pull requests; when
-  prose reads like agent slop; or when a host name leaks into durable text.
+  Keep git history human-readable. Use when committing, branching, or
+  rewriting history; when prose reads like agent slop; or when a host name
+  leaks into durable text. For issue and pull request prose, use
+  $issue-and-pr instead.
 ---
 
 # Git hygiene
@@ -34,16 +35,8 @@ you own, and say so when you do.
 
 ## Issues and pull requests
 
-Write each one as an engineering task in plain words, not as a filled-in
-form. Fixed sections (problem, acceptance, non-goals) turn every report into
-the same grey text and teach readers to skim. Instead, say what is happening,
-what should change, and what done looks like, in whatever shape fits the
-thought. One issue holds one idea; a second idea gets its own issue.
-
-Point at evidence a stranger can open: file paths, commands, measured
-numbers with their conditions. Never link a private chat or paste a
-transcript and call it context. If the reader needs the chat to understand
-the issue, the issue is unfinished.
+Handled by $issue-and-pr. This skill keeps the history side; that one owns
+the prose.
 
 ## Simple English
 

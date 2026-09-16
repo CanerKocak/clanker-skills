@@ -31,6 +31,7 @@ EXPECTED_SKILLS = (
     "edit-the-chain",
     "gather-business-context",
     "git-hygiene",
+    "issue-and-pr",
     "prompt-leakage",
     "semantic-blast-radius",
     "thermo-nuclear-code-quality-review",

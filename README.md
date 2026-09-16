@@ -7,12 +7,12 @@
 
   <p>
     <a href="https://github.com/CanerKocak/clanker-skills/actions/workflows/validate.yml"><img src="https://github.com/CanerKocak/clanker-skills/actions/workflows/validate.yml/badge.svg" alt="Repository validation status"></a>
-    <img src="https://img.shields.io/badge/skills-14-D7FF64?style=flat-square&labelColor=101310" alt="14 bundled skills">
+    <img src="https://img.shields.io/badge/skills-15-D7FF64?style=flat-square&labelColor=101310" alt="15 bundled skills">
     <img src="https://img.shields.io/badge/agent_runtimes-5-D7FF64?style=flat-square&labelColor=101310" alt="Five supported agent runtimes">
   </p>
 </div>
 
-Clanker Skills is a curated collection of 14 evidence-first software-engineering
+Clanker Skills is a curated collection of 15 evidence-first software-engineering
 workflows for Codex, Claude Code, OpenCode, Pi, and Grok Build. The same
 portable skill payload is shipped in each runtime's native layout, so a
 workflow retains its scripts, references, templates, assets, and licenses
@@ -183,6 +183,7 @@ work should stay small.
 | [<code>ast-grep-callchain-audit</code>](plugins/clanker-skills/skills/ast-grep-callchain-audit/SKILL.md) | Structural definitions, calls, imports, parameter flow, and variants. | Contributes AST-backed call-chain edges and counterexamples; a structural match remains a candidate until verified. |
 | [<code>call-chain-invariants</code>](plugins/clanker-skills/skills/call-chain-invariants/SKILL.md) | Similar-looking product surfaces with uncertain shared behavior. | Classifies each reachable surface as applying, different-contract, not applicable, or unknown before completeness is claimed. |
 | [<code>git-hygiene</code>](plugins/clanker-skills/skills/git-hygiene/SKILL.md) | Commits, branches, history rewrites, issues, and pull requests. | Keeps history and review prose human-readable: plain words, one idea per unit, no host names in durable text. |
+| [<code>issue-and-pr</code>](plugins/clanker-skills/skills/issue-and-pr/SKILL.md) | Creating or rewriting an issue or pull request. | Writes each as a plain-sentences engineering task: no tables, no template sections, evidence a stranger can open. |
 | [<code>differential-review</code>](plugins/clanker-skills/skills/differential-review/SKILL.md) | Security-focused review of a commit, branch, diff, or pull request. | Uses history, blast radius, coverage, and adversarial analysis while requiring evidence before promoting a finding. |
 | [<code>yagni-anti-ceremonial</code>](plugins/clanker-skills/skills/yagni-anti-ceremonial/SKILL.md) | Proposed guards, fallbacks, compatibility rails, or recovery paths. | Separates live contract requirements from residual risk, policy, follow-up work, ceremony, and theater. |
 | [<code>thermo-nuclear-code-quality-review</code>](plugins/clanker-skills/skills/thermo-nuclear-code-quality-review/SKILL.md) | The final source candidate before delivery. | Runs two distinct coherence passes: ownership and boundary integrity, then simplification and hidden-coupling pressure. |
@@ -218,7 +219,7 @@ workflows.
 AGENTS.md                                    Table-first output contract
 plugins/clanker-skills/
 ├── .codex-plugin/plugin.json               Codex plugin identity and UI metadata
-└── skills/<name>/                          Canonical source for all 14 skills
+└── skills/<name>/                          Canonical source for all 15 skills
     ├── SKILL.md                            Trigger and workflow contract
     ├── agents/openai.yaml                  Codex display metadata
     └── references|scripts|templates|...    Package-owned resources
