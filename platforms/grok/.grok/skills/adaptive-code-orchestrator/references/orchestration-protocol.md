@@ -1,4 +1,4 @@
-# Orchestration protocol
+# Choosing solo, waves, or independent review
 
 Use this reference for fan-out, dependency waves, parallel edits, or independent
 review. Ordinary localized work should remain in the shorter SOLO loop.

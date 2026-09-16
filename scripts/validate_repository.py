@@ -420,6 +420,36 @@ def validate_platform_manifests(errors: list[str]) -> None:
             errors.append("Grok Build example must contain one native [skills] path")
 
 
+TITLE_GENERIC_STEMS = frozenset(
+    {"skill", "readme", "contributing", "security", "license", "changelog", "agents"}
+)
+TITLE_FILLER_WORDS = frozenset(
+    {"template", "guide", "doc", "docs", "file", "notes", "page"}
+)
+
+
+def validate_title_redundancy(errors: list[str]) -> None:
+    for document in sorted(ROOT.rglob("*.md")):
+        if ".git" in document.parts:
+            continue
+        stem = document.stem.lower()
+        if stem in TITLE_GENERIC_STEMS:
+            continue
+        match = re.search(r"^#\s+(.+)$", document.read_text(encoding="utf-8"), re.M)
+        if not match:
+            continue
+        title_tokens = [
+            token
+            for token in re.sub(r"[^a-z0-9]+", " ", match.group(1).lower()).split()
+            if token not in TITLE_FILLER_WORDS
+        ]
+        stem_tokens = re.sub(r"[^a-z0-9]+", " ", stem).split()
+        if title_tokens and title_tokens == stem_tokens:
+            errors.append(
+                f"{document.relative_to(ROOT)}: title restates the filename"
+            )
+
+
 def validate_catalog_surfaces(errors: list[str]) -> None:
     readme_path = ROOT / "README.md"
     routing_path = ROOT / "docs" / "global-routing.md"
@@ -587,6 +617,7 @@ def main() -> int:
     validate_native_packages(errors)
     validate_plugin(errors)
     validate_platform_manifests(errors)
+    validate_title_redundancy(errors)
     validate_catalog_surfaces(errors)
     validate_links(errors)
     validate_provenance(errors)

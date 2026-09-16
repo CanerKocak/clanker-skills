@@ -1,4 +1,4 @@
-# Differential Review Methodology
+# Running a differential review, phase by phase
 
 Detailed phase-by-phase workflow for security-focused code review.
 

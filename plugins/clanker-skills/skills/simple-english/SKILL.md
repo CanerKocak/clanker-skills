@@ -11,26 +11,38 @@ description: >
 Short sentences. Common words. One idea each. No jargon without an
 explanation on first use.
 
-## The self-check
+## The loop
 
-Finished drafts lie to their authors. Before delivering prose, think to
-yourself through these passes:
+Finished drafts lie to their authors. Run this loop before delivering
+prose, and write each step down as you go. Silent thinking lets faults
+hide; quoting them forces the eyes onto them.
 
-1. Read the draft slowly and mark every word that adds no meaning. Delete
-   them all.
-2. Walk the redundancy table below row by row and check the draft against
-   each pattern. Fix what matches.
-3. Read the result once more start to finish. If a sentence needs a second
-   reading, rewrite it before anyone else has to.
+1. Catch: read the draft slowly and quote every sentence carrying a word
+   that adds no meaning.
+2. Challenge: name the pattern under each quote, from the table below or in
+   your own words ("pleonasm: 'past' adds nothing to 'history'").
+3. Replace: write the fixed sentence next to the quote.
+4. Count down: tally catches per pass. Run the loop again until one full
+   pass finds nothing. Zero is the only exit.
 
-Never skip the check because the draft felt fine while writing it. Writing
-and judging use different eyes; run both.
+Never skip the loop because the draft felt fine while writing it. Writing
+and judging use different eyes; the tally proves the second pair showed
+up.
 
 ## The family
 
 Tautology says the same thing twice in different words. Pleonasm adds words
 the meaning already contains. Both charge the reader for nothing. Everything
 in the table below is kin: extra weight with no extra sense.
+
+## Titles
+
+Never name in the title what the filename already says. A file called
+`project-notes.md` titled "project-notes.md — project notes" repeats
+itself; "Project notes" alone says everything. If the title only restates a distinctive filename, delete the
+repetition and say what the file is for. Generic filenames are the
+exception: every directory holds a `SKILL.md`, so its title must carry the
+name instead.
 
 ## Redundancy table
 

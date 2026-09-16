@@ -1,4 +1,4 @@
-# Plan Document Reviewer Prompt Template
+# One independent plan review
 
 Use this template for one independent plan review when it adds a distinct
 evidence channel.

@@ -1,4 +1,4 @@
-# Unmodeled assumptions
+# Facts the environment applies that the spec never named
 
 Facts the environment always applies. Our spec, quote, or mental model never
 named them.

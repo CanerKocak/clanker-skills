@@ -1,4 +1,4 @@
-# Third-party notices
+# Upstream sources and their licenses
 
 ## Uncodixfy
 

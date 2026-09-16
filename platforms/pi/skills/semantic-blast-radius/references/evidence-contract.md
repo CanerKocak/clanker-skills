@@ -1,4 +1,4 @@
-# Evidence contract
+# When evidence counts as verified
 
 ## Verified
 
