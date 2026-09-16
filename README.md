@@ -7,12 +7,12 @@
 
   <p>
     <a href="https://github.com/CanerKocak/clanker-skills/actions/workflows/validate.yml"><img src="https://github.com/CanerKocak/clanker-skills/actions/workflows/validate.yml/badge.svg" alt="Repository validation status"></a>
-    <img src="https://img.shields.io/badge/skills-15-D7FF64?style=flat-square&labelColor=101310" alt="15 bundled skills">
+    <img src="https://img.shields.io/badge/skills-16-D7FF64?style=flat-square&labelColor=101310" alt="16 bundled skills">
     <img src="https://img.shields.io/badge/agent_runtimes-5-D7FF64?style=flat-square&labelColor=101310" alt="Five supported agent runtimes">
   </p>
 </div>
 
-Clanker Skills is a curated collection of 15 evidence-first software-engineering
+Clanker Skills is a curated collection of 16 evidence-first software-engineering
 workflows for Codex, Claude Code, OpenCode, Pi, and Grok Build. The same
 portable skill payload is shipped in each runtime's native layout, so a
 workflow retains its scripts, references, templates, assets, and licenses
@@ -201,6 +201,7 @@ work should stay small.
 | --- | --- | --- |
 | [<code>uncodixfy</code>](plugins/clanker-skills/skills/uncodixfy/SKILL.md) | Generating or revising frontend HTML, CSS, React, Vue, Svelte, or product UI. | Avoids generic agent-generated dashboard patterns in favor of product-specific hierarchy, spacing, motion, and color. |
 | [<code>prompt-leakage</code>](plugins/clanker-skills/skills/prompt-leakage/SKILL.md) | Comments, READMEs, instructions, review text, and commit messages. | Removes chat motives, restatements, and reviewer theater while retaining information that a stranger cannot infer. |
+| [<code>simple-english</code>](plugins/clanker-skills/skills/simple-english/SKILL.md) | Any draft a human reads. | Enforces short sentences and runs a redundancy self-check against 24 tautology and pleonasm patterns. |
 
 ## Make routing automatic
 
@@ -219,7 +220,7 @@ workflows.
 AGENTS.md                                    Table-first output contract
 plugins/clanker-skills/
 ├── .codex-plugin/plugin.json               Codex plugin identity and UI metadata
-└── skills/<name>/                          Canonical source for all 15 skills
+└── skills/<name>/                          Canonical source for all 16 skills
     ├── SKILL.md                            Trigger and workflow contract
     ├── agents/openai.yaml                  Codex display metadata
     └── references|scripts|templates|...    Package-owned resources

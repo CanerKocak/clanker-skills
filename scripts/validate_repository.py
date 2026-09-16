@@ -34,6 +34,7 @@ EXPECTED_SKILLS = (
     "issue-and-pr",
     "prompt-leakage",
     "semantic-blast-radius",
+    "simple-english",
     "thermo-nuclear-code-quality-review",
     "uncodixfy",
     "writing-plans",

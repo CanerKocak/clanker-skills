@@ -44,6 +44,7 @@ framing, run `$gather-business-context` before `$analyze-data-quality`. Apply
 `$uncodixfy` to frontend UI work and `$prompt-leakage` to comments,
 READMEs, durable instructions, and commit text. Use `$git-hygiene` for commits,
 branches, and history rewrites, and `$issue-and-pr` for human-readable issues,
-pull requests, and reviews. Do not invoke adjacent skills
+pull requests, and reviews. Write all durable prose with `$simple-english`:
+short sentences, common words, redundancy checked. Do not invoke adjacent skills
 ceremonially.
 ```

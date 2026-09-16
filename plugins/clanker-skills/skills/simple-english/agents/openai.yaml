@@ -1,0 +1,5 @@
+interface:
+  display_name: "Simple English"
+  short_description: "Plain prose with a redundancy self-check"
+  brand_color: "#D7FF64"
+  default_prompt: "Use $simple-english to rewrite this draft and run the redundancy self-check."
