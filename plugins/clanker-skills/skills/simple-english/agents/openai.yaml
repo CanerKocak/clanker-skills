@@ -1,5 +1,5 @@
 interface:
   display_name: "Simple English"
-  short_description: "Plain prose with a redundancy self-check"
+  short_description: "Technical prose with aircraft-manual clarity"
   brand_color: "#D7FF64"
-  default_prompt: "Use $simple-english to rewrite this draft and run the redundancy self-check."
+  default_prompt: "Use $simple-english to rewrite this technical text with clear instructions and preserve its meaning."

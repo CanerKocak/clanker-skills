@@ -1,7 +1,7 @@
 {
   "name": "clanker-skills",
-  "version": "0.2.0",
-  "description": "Evidence-first engineering workflows for Codex and other coding agents.",
+  "version": "0.3.0",
+  "description": "Evidence-first engineering workflows for Codex.",
   "author": {
     "name": "Caner Kocak",
     "url": "https://github.com/CanerKocak"
@@ -12,11 +12,7 @@
     "agent-skills",
     "codex",
     "codex-skills",
-    "claude-code",
     "code-review",
-    "grok",
-    "opencode",
-    "pi",
     "security-audit",
     "static-analysis"
   ],
@@ -24,7 +20,7 @@
   "interface": {
     "displayName": "Clanker Skills",
     "shortDescription": "Evidence-first engineering workflows for Codex.",
-    "longDescription": "A curated collection of 16 Codex skills for planning, code review, call-chain analysis, security audits, data quality, and frontend quality, with native packages for Claude Code, OpenCode, Pi, and Grok Build.",
+    "longDescription": "A curated collection of 17 Codex skills for planning, code review, call-chain analysis, security audits, source investigation, data quality, frontend quality, and clear technical writing.",
     "developerName": "Caner Kocak",
     "category": "Developer Tools",
     "capabilities": [],

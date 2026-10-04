@@ -1,0 +1,5 @@
+interface:
+  display_name: "Codebase Search"
+  short_description: "Read-only Codex searches with checked source citations"
+  brand_color: "#D7FF64"
+  default_prompt: "Use $codebase-search to trace this repository behavior and check the decisive source citations."

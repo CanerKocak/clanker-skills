@@ -122,13 +122,12 @@ EDIT_CHAIN_DIR=/absolute/path/to/edit-the-chain
 ```
 
 Use the task's real base. The brief and output directory must be outside the
-reviewed repository. The helper requires `codex exec`; use it only in a Codex
-environment. In another agent runtime, reproduce the same candidate manifest,
-role separation, read-only boundary, and fingerprint checks with that
-platform's native isolated-review mechanism. Do not replace those obligations
-with an unbound review shortcut. The bundled helper binds the repository with
-`-C`, uses read-only sandboxes, emits Markdown as `.md`, attests both
-fingerprints, and detects candidate movement.
+reviewed repository. The helper requires `codex exec`. It binds the repository
+with `-C`, uses read-only sandboxes, emits Markdown as `.md`, attests both
+fingerprints, and detects candidate movement. Any other authorized review
+method must preserve the candidate manifest, role separation, read-only
+boundary, and fingerprint checks. Report the limit if these checks cannot
+be performed.
 
 ### Receive findings
 

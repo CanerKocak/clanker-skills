@@ -1,5 +1,5 @@
 <div align="center">
-  <img src=".github/assets/social-preview.png" alt="Clanker Skills — evidence-first workflows for coding agents" width="100%">
+  <img src=".github/assets/social-preview.png" alt="Clanker Skills — evidence-first workflows for Codex" width="100%">
 
   <h1>Clanker Skills</h1>
 
@@ -7,16 +7,14 @@
 
   <p>
     <a href="https://github.com/CanerKocak/clanker-skills/actions/workflows/validate.yml"><img src="https://github.com/CanerKocak/clanker-skills/actions/workflows/validate.yml/badge.svg" alt="Repository validation status"></a>
-    <img src="https://img.shields.io/badge/skills-16-D7FF64?style=flat-square&labelColor=101310" alt="16 bundled skills">
-    <img src="https://img.shields.io/badge/agent_runtimes-5-D7FF64?style=flat-square&labelColor=101310" alt="Five supported agent runtimes">
+    <img src="https://img.shields.io/badge/skills-17-D7FF64?style=flat-square&labelColor=101310" alt="17 bundled skills">
+    <img src="https://img.shields.io/badge/Codex-plugin-D7FF64?style=flat-square&labelColor=101310" alt="Codex plugin">
   </p>
 </div>
 
-Clanker Skills is a curated collection of 16 evidence-first software-engineering
-workflows for Codex, Claude Code, OpenCode, Pi, and Grok Build. The same
-portable skill payload is shipped in each runtime's native layout, so a
-workflow retains its scripts, references, templates, assets, and licenses
-wherever it is installed.
+Clanker Skills is a curated collection of 17 evidence-first software-engineering
+workflows for Codex. One plugin contains the skills and their scripts,
+references, templates, assets, and licenses.
 
 The collection is for work where a successful command is not sufficient
 evidence. It helps an agent identify the owner before editing, map reachable
@@ -25,23 +23,9 @@ and remove chat residue from durable prose.
 
 > [!NOTE]
 > This is a community-maintained project. It is not affiliated with or endorsed
-> by OpenAI, Anthropic, OpenCode, Pi, or xAI.
+> by OpenAI.
 
 ## Install
-
-Choose the runtime you use. Each package is independently usable; no symlink,
-shared home-directory setup, or Codex installation is required for the other
-four runtimes.
-
-| Runtime | Native package | Primary route | Package guide |
-| --- | --- | --- | --- |
-| Codex | Codex plugin | Marketplace installation | [Codex](#codex) |
-| Claude Code | <code>platforms/claude-code/</code> | <code>claude --plugin-dir</code> | [Claude Code](platforms/claude-code/README.md) |
-| OpenCode | <code>platforms/opencode/.opencode/skills/</code> | <code>opencode.json</code> <code>skills.paths</code> | [OpenCode](platforms/opencode/README.md) |
-| Pi | <code>platforms/pi/skills/</code> | <code>pi install</code> from Git | [Pi](platforms/pi/README.md) |
-| Grok Build | <code>platforms/grok/.grok/skills/</code> | <code>config.toml</code> <code>[skills]</code> path | [Grok Build](platforms/grok/README.md) |
-
-### Codex
 
 Add the repository as a plugin marketplace, then install its plugin:
 
@@ -50,8 +34,8 @@ codex plugin marketplace add CanerKocak/clanker-skills --ref main
 codex plugin add clanker-skills@clanker-skills
 ~~~
 
-Start a new task after installation. A skill can activate from its description,
-or invoke one directly:
+Start a new Codex session after installation. A skill can activate from its
+description, or invoke one directly:
 
 ~~~text
 $writing-plans turn this specification into an implementation plan
@@ -64,64 +48,19 @@ The Codex package follows the documented
 <code>.codex-plugin/plugin.json</code> manifest and one <code>skills/</code>
 tree.
 
-### Claude Code
+## Update
 
-Clone the repository and start Claude Code with the standalone plugin directory:
-
-~~~bash
-git clone https://github.com/CanerKocak/clanker-skills.git "$HOME/clanker-skills"
-claude --plugin-dir "$HOME/clanker-skills/platforms/claude-code"
-~~~
-
-Run <code>/skills</code> to confirm discovery. Claude Code namespaces these
-workflows as <code>/clanker-skills:writing-plans</code>,
-<code>/clanker-skills:edit-the-chain</code>, and so on. See the
-[Claude Code package guide](platforms/claude-code/README.md) for the native
-plugin layout.
-
-### OpenCode
-
-Merge the native package path into <code>opencode.json</code>:
-
-~~~json
-{
-  "$schema": "https://opencode.ai/config.json",
-  "skills": {
-    "paths": [
-      "/absolute/path/to/clanker-skills/platforms/opencode/.opencode/skills"
-    ]
-  }
-}
-~~~
-
-The [OpenCode package guide](platforms/opencode/README.md) also covers the
-project-local <code>.opencode</code> copy and discovery check.
-
-### Pi
-
-The repository root is a Pi package. Install the native Pi skills directly
-from Git:
+Refresh the marketplace and install the plugin version from the repository:
 
 ~~~bash
-pi install git:github.com/CanerKocak/clanker-skills@main
+codex plugin marketplace upgrade clanker-skills
+codex plugin add clanker-skills@clanker-skills
+codex plugin list --marketplace clanker-skills
 ~~~
 
-Use <code>pi install -l</code> to attach the package only to the current
-project. The [Pi package guide](platforms/pi/README.md) also provides a
-settings-based route for an existing clone.
-
-### Grok Build
-
-Add the native skills directory to the <code>[skills]</code> paths in
-<code>~/.grok/config.toml</code>:
-
-~~~toml
-[skills]
-paths = ["/absolute/path/to/clanker-skills/platforms/grok/.grok/skills"]
-~~~
-
-The [Grok Build package guide](platforms/grok/README.md) covers global and
-project-local installation, including discovery with <code>grok inspect</code>.
+Start a new Codex session to load the installed version. Keep plugin skills
+in the plugin; copying them into `~/.codex/skills` or `~/.agents/skills`
+creates a separate installation that can drift.
 
 ## Why these workflows exist
 
@@ -182,6 +121,7 @@ work should stay small.
 | [<code>semantic-blast-radius</code>](plugins/clanker-skills/skills/semantic-blast-radius/SKILL.md) | Shared APIs, types, helpers, state machines, or public contracts. | Builds one cross-file impact graph from compiler or LSP evidence plus independent AST and text searches. |
 | [<code>ast-grep-callchain-audit</code>](plugins/clanker-skills/skills/ast-grep-callchain-audit/SKILL.md) | Structural definitions, calls, imports, parameter flow, and variants. | Contributes AST-backed call-chain edges and counterexamples; a structural match remains a candidate until verified. |
 | [<code>call-chain-invariants</code>](plugins/clanker-skills/skills/call-chain-invariants/SKILL.md) | Similar-looking product surfaces with uncertain shared behavior. | Classifies each reachable surface as applying, different-contract, not applicable, or unknown before completeness is claimed. |
+| [<code>codebase-search</code>](plugins/clanker-skills/skills/codebase-search/SKILL.md) | Implementation searches, call-chain traces, and source-backed code questions. | Runs a read-only Codex search when delegation is permitted and checks decisive citations against the requested checkout. |
 | [<code>git-hygiene</code>](plugins/clanker-skills/skills/git-hygiene/SKILL.md) | Commits, branches, history rewrites, issues, and pull requests. | Keeps history and review prose human-readable: plain words, one idea per unit, no host names in durable text. |
 | [<code>issue-and-pr</code>](plugins/clanker-skills/skills/issue-and-pr/SKILL.md) | Creating or rewriting an issue or pull request. | Writes each as a plain-words engineering task with tables for comparable evidence, no template sections, evidence a stranger can open. |
 | [<code>differential-review</code>](plugins/clanker-skills/skills/differential-review/SKILL.md) | Security-focused review of a commit, branch, diff, or pull request. | Uses history, blast radius, coverage, and adversarial analysis while requiring evidence before promoting a finding. |
@@ -201,35 +141,14 @@ work should stay small.
 | --- | --- | --- |
 | [<code>uncodixfy</code>](plugins/clanker-skills/skills/uncodixfy/SKILL.md) | Generating or revising frontend HTML, CSS, React, Vue, Svelte, or product UI. | Avoids generic agent-generated dashboard patterns in favor of product-specific hierarchy, spacing, motion, and color. |
 | [<code>prompt-leakage</code>](plugins/clanker-skills/skills/prompt-leakage/SKILL.md) | Comments, READMEs, instructions, review text, and commit messages. | Removes chat motives, restatements, and reviewer theater while retaining information that a stranger cannot infer. |
-| [<code>simple-english</code>](plugins/clanker-skills/skills/simple-english/SKILL.md) | Any draft a human reads. | Enforces short sentences and runs a redundancy self-check against 24 tautology and pleonasm patterns. |
-
-## Install with clank
-
-`scripts/clank.py` installs the skills headlessly: it clones the repository
-and wires it into your harnesses. It never prompts; agents should pass
-`--json`. `CLANK_REPO`, `CLANK_REF`, and `CLANK_DIR` override the defaults.
-
-```sh
-python3 scripts/clank.py install --harness opencode,pi --json
-python3 scripts/clank.py update --json
-python3 scripts/clank.py status --json
-python3 scripts/clank.py remove --harness pi
-python3 scripts/clank.py remove --purge --force
-```
-
-`install` patches OpenCode, Pi, and Grok Build configs and prints the one
-manual step for Claude Code and Codex. `update` fast-forwards the clone and
-refuses a dirty tree. `remove` unwires; `--purge` also deletes the clone.
-Run `python3 scripts/test_clank.py` to exercise the whole matrix isolated.
+| [<code>simple-english</code>](plugins/clanker-skills/skills/simple-english/SKILL.md) | Technical documentation, procedures, runbooks, error messages, and API guides. | Uses aircraft-manual clarity while preserving facts, uncertainty, and obligations; checks strict STE rules when requested. |
 
 ## Make routing automatic
 
-After installing a package, add the repository's single
-[evidence-first routing block](docs/global-routing.md) to your harness's global
-instructions. It maps work by contract, including
-<code>$writing-plans</code> for multi-step specifications, establishes the
-table-first output contract, and makes clear when not to invoke adjacent
-workflows.
+The [routing block](docs/global-routing.md) provides an optional addition to
+`~/.codex/AGENTS.md`. It selects skills by task, preserves continuity when
+runtime tools are available, and distinguishes settings from execution evidence.
+Keep it consistent with your existing global instructions.
 
 ## Repository structure
 
@@ -239,44 +158,34 @@ workflows.
 AGENTS.md                                    Table-first output contract
 plugins/clanker-skills/
 ├── .codex-plugin/plugin.json               Codex plugin identity and UI metadata
-└── skills/<name>/                          Canonical source for all 16 skills
+└── skills/<name>/                          Canonical source for all 17 skills
     ├── SKILL.md                            Trigger and workflow contract
     ├── agents/openai.yaml                  Codex display metadata
     └── references|scripts|templates|...    Package-owned resources
-platforms/
-├── claude-code/                            Standalone Claude Code plugin
-├── opencode/.opencode/skills/              Native OpenCode skill tree
-├── pi/skills/                              Native Pi skill tree
-└── grok/.grok/skills/                      Native Grok Build skill tree
-scripts/sync_platform_packages.py           Regenerates and checks native mirrors
 scripts/validate_repository.py              Dependency-free repository validation
 ~~~
 
-The canonical source is the only place to edit a portable skill. The four
-platform trees are generated, self-contained copies that deliberately omit
-only Codex display metadata under <code>agents/</code>.
+Edit skills in `plugins/clanker-skills/skills/`. The marketplace installs
+this package directly from the repository.
 
 ## Verification
 
-Run the same checks used by GitHub Actions from the repository root:
+Run the check used by GitHub Actions from the repository root:
 
 ~~~bash
-python3 scripts/sync_platform_packages.py --check
 python3 scripts/validate_repository.py
 ~~~
 
-The checks fail if a mirror drifts from the portable source, an inventory,
-frontmatter name, package manifest, README catalog, routing entry, local
-Markdown link, provenance pin, or the 1280×640 social-preview contract moves
-without an explicit update.
+The validator checks skill inventory, frontmatter, display metadata, plugin
+and marketplace manifests, catalog entries, routing entries, local links,
+upstream provenance, and the 1280×640 social preview.
 
 ## Runtime boundaries
 
 - <code>ast-grep-callchain-audit</code> expects the maintained
   <code>ast-grep</code> binary.
 - <code>edit-the-chain</code> includes an optional <code>codex exec</code>
-  review helper. Non-Codex runtimes retain the workflow and must use their
-  native isolated-review mechanism for that optional execution path.
+  review helper. Its use remains subject to the active delegation instructions.
 - Conditional workflows can name companion skills that are not bundled here.
   Missing companions must be reported as a boundary rather than simulated.
 

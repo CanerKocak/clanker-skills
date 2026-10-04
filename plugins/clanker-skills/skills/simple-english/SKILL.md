@@ -1,78 +1,73 @@
 ---
 name: simple-english
 description: >
-  Write plain prose and check it for redundancy. Use when drafting anything
-  a human reads; when prose feels heavy; or when tautology, pleonasm, and
-  their relatives need hunting down with real examples.
+  Write technical prose with aircraft-manual clarity. Use for documentation,
+  READMEs, procedures, runbooks, error messages, release notes, incident reports,
+  and API guides, or when the user requests Simplified Technical English (STE).
+  Do not apply this style to marketing or brand copy unless requested.
 ---
 
 # Simple English
 
-Short sentences. Common words. One idea each. No jargon without an
-explanation on first use.
+Make technical text easy to act on and difficult to misread. Use the practical
+style below by default. Use strict ASD-STE100 checks only when requested.
 
-## The loop
+## Preserve the meaning
 
-Finished drafts lie to their authors. Run this loop before delivering
-prose, and write each step down as you go. Silent thinking lets faults
-hide; quoting them forces the eyes onto them.
+Clarity must not change the contract. Preserve these details before editing:
 
-1. Catch: read the draft slowly and quote every sentence carrying a word
-   that adds no meaning.
-2. Challenge: name the pattern under each quote, from the table below or in
-   your own words ("pleonasm: 'past' adds nothing to 'history'").
-3. Replace: write the fixed sentence next to the quote.
-4. Count down: tally catches per pass. Run the loop again until one full
-   pass finds nothing. Zero is the only exit.
+- Facts, actors, conditions, sequence, quantities, units, and time.
+- The difference between a requirement, a recommendation, and an option.
+- Uncertainty, attribution, evidence limits, and whether a cause is known.
+- Code identifiers, commands, paths, API names, and quoted diagnostic text.
 
-Never skip the loop because the draft felt fine while writing it. Writing
-and judging use different eyes; the tally proves the second pair showed
-up.
+Preserve what modal verbs mean in context. In typical technical prose, `must`
+states a requirement and `should` states a recommendation. `May` can express
+permission or possibility. Do not turn a possible failure into a certain
+failure or a suggestion into an instruction. Never add a cause, measurement,
+timestamp, or result to make a sentence sound precise.
 
-## The family
+Use one term for one concept. Keep different concepts distinct: `check`,
+`verify`, and `validate` can name different operations in a software system.
+Keep established domain terms when a simpler word would change the meaning.
+Explain unfamiliar terms when the audience needs the explanation.
 
-Tautology says the same thing twice in different words. Pleonasm adds words
-the meaning already contains. Both charge the reader for nothing. Everything
-in the table below is kin: extra weight with no extra sense.
+## Write like a technical manual
 
-## Titles
+- Use short, complete sentences and common words with precise meanings.
+- Give each sentence one main idea. Give each paragraph one topic.
+- Use active voice when the actor is known. Do not invent an actor to avoid
+  passive voice.
+- Start instructions with an action verb. Identify the object of the action.
+- Put a condition before the affected instruction: "If the test fails, stop
+  the deployment." Keep descriptive sentences in the order that reads best.
+- Put prerequisites and necessary warnings before the step they affect.
+- Separate actions when the reader must perform them separately. Keep an
+  immediate result with its action when that helps the reader verify the step.
+- Use lists for steps or parallel information. Use tables for comparisons.
+  Do not force a narrative or causal explanation into a table.
+- Prefer explicit references when `it`, `this`, or `they` could refer to more
+  than one thing.
+- Remove filler and repeated meaning. Keep qualifiers that change scope or
+  meaning. Use titles that tell the reader what the document is for.
 
-Never name in the title what the filename already says. A file called
-`project-notes.md` titled "project-notes.md — project notes" repeats
-itself; "Project notes" alone says everything. If the title only restates a distinctive filename, delete the
-repetition and say what the file is for. Generic filenames are the
-exception: every directory holds a `SKILL.md`, so its title must carry the
-name instead.
+For the default style, aim for at most 20 words in procedural sentences and
+25 in descriptive sentences. Split long sentences at a natural boundary.
+Preserve meaning and grammatical completeness before meeting a word target.
 
-## Redundancy table
+## Edit and check
 
-| Pattern | Wrong | Right |
-|---|---|---|
-| Free gift | a free gift | a gift (gifts are free) |
-| Past history | past history | history |
-| End result | the end result | the result |
-| PIN/ATM + noun | PIN number, ATM machine | PIN, ATM (the noun is inside) |
-| In order to | in order to run | to run |
-| Due to the fact that | due to the fact that it broke | because it broke |
-| At this point in time | at this point in time | now |
-| Whether or not | whether or not it works | whether it works |
-| Advance warning/planning | advance warning | warning |
-| Basic fundamentals | basic fundamentals | basics |
-| Close proximity | in close proximity | near |
-| Together verbs | collaborate together, meet together | collaborate, meet |
-| Completely finished | completely finished | finished |
-| Consensus of opinion | consensus of opinion | consensus |
-| Each and every | each and every test | each test |
-| Exactly the same | exactly the same file | the same file |
-| First and foremost | first and foremost | first |
-| Future plans | future plans | plans |
-| Invited guest | invited guest | guest |
-| New innovation | new innovation | innovation |
-| Personal opinion | my personal opinion | my view |
-| Reason is because | the reason is because | the reason is that |
-| Refer/revert/repeat back | refer back, revert back | refer, revert |
-| Unexpected surprise | an unexpected surprise | a surprise |
+Identify the audience and whether the text describes behavior or directs an
+action. Preserve its facts and obligations, then rewrite it. Compare the
+rewrite with the source for lost conditions, changed authority, invented
+facts, and unnecessary words. Do this check privately.
 
-Each row is one invariant: if the draft contains the left side, replace it
-with the right side. No exceptions for emphasis; emphasis comes from short
-true sentences, not from doubled words.
+Return the requested text. Add a brief note only when an unresolved ambiguity
+or missing fact affects its use. If the user requests a writing audit, show
+the relevant source text, the problem, and the proposed replacement. Do not
+attach a review transcript or a tally to an ordinary rewrite.
+
+For examples of meaning-preserving edits or strict STE checks, read
+[references/manual-english.md](references/manual-english.md). Strict compliance
+requires the applicable official rules and dictionary; this skill alone does
+not establish compliance.
