@@ -81,35 +81,9 @@ Clanker Skills contributes four recurring controls:
 - **Restraint before ceremony.** Reject speculative guards, recovery rails,
   generic UI patterns, and prose that merely narrates the work session.
 
-## Workflow map
-
-~~~mermaid
-flowchart TD
-    A[Request] --> C{Workstream}
-    A -.->|multi-step specification| W[writing-plans]
-    W --> C
-    A -.->|uncertain or high-risk| B[adaptive-code-orchestrator]
-    B --> C
-    C -->|non-trivial code change| D[edit-the-chain]
-    D --> E[semantic-blast-radius]
-    E --> F[ast-grep-callchain-audit]
-    E --> G[call-chain-invariants]
-    F --> H[Smallest correct change]
-    G --> H
-    H -.->|security-focused diff| I[differential-review]
-    H --> J[thermo-nuclear-code-quality-review]
-    I -.->|guard or fallback proposed| K[yagni-anti-ceremonial]
-    C -->|Data| L{Business context complete?}
-    L -->|No| M[gather-business-context]
-    L -->|Yes| N[analyze-data-quality]
-    M --> N
-    C -->|Frontend or durable prose| T[uncodixfy or prompt-leakage]
-~~~
-
-This is a routing map, not a requirement to invoke every skill. Small local
-work should stay small.
-
 ## Skill catalog
+
+Choose the smallest workflow that fits the task.
 
 ### Planning and change safety
 
