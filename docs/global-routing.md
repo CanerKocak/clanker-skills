@@ -22,6 +22,12 @@ Use `$differential-review` for security-focused diffs. Apply
 `$yagni-anti-ceremonial` to proposed guards and fallbacks. Complete source
 changes with both passes of `$thermo-nuclear-code-quality-review`.
 
+Use `$giga-review` for a requested deep financial-code audit across dimensional
+arithmetic, races, unsafe defaults, and unsafe fallbacks. It owns coverage and
+coordinates differential review for changed code. Use `$dimensional-analysis`
+for a focused audit of units, scales, rounding, and numeric bounds. Neither
+workflow authorizes fixes, live probes, or external issue creation.
+
 Use `$codebase-search` for a focused read-only source investigation when
 delegation is permitted. Handle simple known-file lookups directly and check
 decisive citations against the requested checkout.

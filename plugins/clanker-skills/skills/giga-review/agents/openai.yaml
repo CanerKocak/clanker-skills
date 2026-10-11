@@ -1,0 +1,5 @@
+interface:
+  display_name: "Giga Review"
+  short_description: "Deep financial audits with twice-run coverage scouts"
+  brand_color: "#D7FF64"
+  default_prompt: "Use $giga-review to map and audit this financial code with all four branches and differential review."

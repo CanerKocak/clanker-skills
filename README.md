@@ -7,12 +7,12 @@
 
   <p>
     <a href="https://github.com/CanerKocak/clanker-skills/actions/workflows/validate.yml"><img src="https://github.com/CanerKocak/clanker-skills/actions/workflows/validate.yml/badge.svg" alt="Repository validation status"></a>
-    <img src="https://img.shields.io/badge/skills-17-D7FF64?style=flat-square&labelColor=101310" alt="17 bundled skills">
+    <img src="https://img.shields.io/badge/skills-19-D7FF64?style=flat-square&labelColor=101310" alt="19 bundled skills">
     <img src="https://img.shields.io/badge/Codex-plugin-D7FF64?style=flat-square&labelColor=101310" alt="Codex plugin">
   </p>
 </div>
 
-Clanker Skills is a curated collection of 17 evidence-first software-engineering
+Clanker Skills is a curated collection of 19 evidence-first software-engineering
 workflows for Codex. One plugin contains the skills and their scripts,
 references, templates, assets, and licenses.
 
@@ -109,6 +109,20 @@ Choose the smallest workflow that fits the task.
 | [<code>gather-business-context</code>](plugins/clanker-skills/skills/gather-business-context/SKILL.md) | Missing definitions, source authority, ownership, recent changes, or decision framing. | Retrieves only the context needed downstream, preserves source conflicts, and does not disguise retrieval as analysis. |
 | [<code>analyze-data-quality</code>](plugins/clanker-skills/skills/analyze-data-quality/SKILL.md) | Tables, financial equations, dashboards, query results, or analytical evidence. | Establishes grain and checks completeness, uniqueness, validity, consistency, integrity, freshness, distributions, and reconciliation boundaries. |
 
+### Financial audits
+
+| Skill | Use it for | Core contract |
+| --- | --- | --- |
+| [<code>dimensional-analysis</code>](plugins/clanker-skills/skills/dimensional-analysis/SKILL.md) | Units, assets, decimal scales, rounding, and numeric ranges across financial calculations. | Traces producers through calculations and storage/API boundaries; checks intermediate overflow separately from unit correctness. Read-only unless edits are requested. |
+| [<code>giga-review</code>](plugins/clanker-skills/skills/giga-review/SKILL.md) | Deep financial-code audits of a repository, flow, or change. | Runs each branch scout twice, reconciles coverage, and reviews dimensional arithmetic, races, defaults, and fallbacks with differential attribution and independent finding validation. |
+
+Giga-review records a file and boundary inventory before filtering for suspected
+bugs. Each branch runs the same scout in two fresh contexts, first forward from
+producers and then backward from consumers. Reviewers inspect the combined map;
+missing evidence stays visible. Diff reviews include every changed hunk and the
+unchanged dependencies that carry its invariants. Coverage is bounded evidence,
+not a promise that no bugs remain.
+
 ### Interface and durable prose
 
 | Skill | Use it for | Core contract |
@@ -132,7 +146,7 @@ Keep it consistent with your existing global instructions.
 AGENTS.md                                    Table-first output contract
 plugins/clanker-skills/
 ├── .codex-plugin/plugin.json               Codex plugin identity and UI metadata
-└── skills/<name>/                          Canonical source for all 17 skills
+└── skills/<name>/                          Canonical source for all 19 skills
     ├── SKILL.md                            Trigger and workflow contract
     ├── agents/openai.yaml                  Codex display metadata
     └── references|scripts|templates|...    Package-owned resources
