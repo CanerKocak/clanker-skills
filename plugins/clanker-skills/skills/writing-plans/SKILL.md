@@ -12,9 +12,6 @@ Write comprehensive implementation plans for an engineer with little repository 
 Assume the implementer is technically capable but new to the repository and
 domain. State relevant toolchain and domain assumptions explicitly.
 
-**Context:** If worktree isolation is needed, create it with the target platform's
-documented worktree or sandbox workflow before planning implementation details.
-
 **Save plans to:** `docs/plans/YYYY-MM-DD-<feature-name>.md`
 - (User preferences for plan location override this default)
 
