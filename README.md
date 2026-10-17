@@ -13,8 +13,8 @@
 </div>
 
 Clanker Skills is a curated collection of 19 evidence-first software-engineering
-workflows for Codex. One plugin contains the skills and their scripts,
-references, templates, assets, and licenses.
+workflows for Codex and DeepSeek Harness. One plugin contains the skills and
+their scripts, references, templates, assets, and licenses.
 
 The collection is for work where a successful command is not sufficient
 evidence. It helps an agent identify the owner before editing, map reachable
@@ -48,6 +48,25 @@ The Codex package follows the documented
 <code>.codex-plugin/plugin.json</code> manifest and one <code>skills/</code>
 tree.
 
+### DeepSeek Harness
+
+DeepSeek Harness scans `$DSH_HOME/skills` for skills and reads user-global
+guidance from `$DSH_HOME/AGENTS.md`. The repository includes a script that
+links the plugin's bundles into that root and writes the output contract plus
+routing block into `AGENTS.md`:
+
+~~~bash
+git clone https://github.com/CanerKocak/clanker-skills.git "$HOME/clanker-skills"
+python3 "$HOME/clanker-skills/scripts/install_deepseek_harness.py" install --json
+~~~
+
+The links point at the checkout, so pulling updates the skills without copying
+them; re-run `install` to refresh the managed `AGENTS.md` section. Run from a
+project root with `--scope project` to use `<project>/.dsh/skills` and
+`<project>/AGENTS.md`, and use `status` or `remove` to inspect or undo it. The
+[DeepSeek Harness guide](docs/deepseek-harness.md) covers the manual route and
+limits.
+
 ## Update
 
 Refresh the marketplace and install the plugin version from the repository:
@@ -61,6 +80,10 @@ codex plugin list --marketplace clanker-skills
 Start a new Codex session to load the installed version. Keep plugin skills
 in the plugin; copying them into `~/.codex/skills` or `~/.agents/skills`
 creates a separate installation that can drift.
+
+For DeepSeek Harness, pull the checkout and re-run
+`scripts/install_deepseek_harness.py install` to refresh the linked skills and
+the managed `AGENTS.md` section.
 
 ## Why these workflows exist
 
@@ -136,7 +159,9 @@ not a promise that no bugs remain.
 The [routing block](docs/global-routing.md) provides an optional addition to
 `~/.codex/AGENTS.md`. It selects skills by task, preserves continuity when
 runtime tools are available, and distinguishes settings from execution evidence.
-Keep it consistent with your existing global instructions.
+Keep it consistent with your existing global instructions. For DeepSeek
+Harness, `scripts/install_deepseek_harness.py install` writes the contract and
+routing block into `$DSH_HOME/AGENTS.md`; no manual append is needed.
 
 ## Repository structure
 
@@ -150,6 +175,8 @@ plugins/clanker-skills/
     ├── SKILL.md                            Trigger and workflow contract
     ├── agents/openai.yaml                  Codex display metadata
     └── references|scripts|templates|...    Package-owned resources
+scripts/install_deepseek_harness.py         DeepSeek Harness installer
+scripts/test_install_deepseek_harness.py    Installer regression tests
 scripts/validate_repository.py              Dependency-free repository validation
 ~~~
 
@@ -162,11 +189,13 @@ Run the check used by GitHub Actions from the repository root:
 
 ~~~bash
 python3 scripts/validate_repository.py
+python3 scripts/test_install_deepseek_harness.py
 ~~~
 
 The validator checks skill inventory, frontmatter, display metadata, plugin
 and marketplace manifests, catalog entries, routing entries, local links,
-upstream provenance, and the 1280×640 social preview.
+upstream provenance, and the 1280×640 social preview. The installer test keeps
+the DeepSeek Harness install path and managed `AGENTS.md` block covered.
 
 ## Runtime boundaries
 
@@ -176,6 +205,8 @@ upstream provenance, and the 1280×640 social preview.
   review helper. Its use remains subject to the active delegation instructions.
 - Conditional workflows can name companion skills that are not bundled here.
   Missing companions must be reported as a boundary rather than simulated.
+- DeepSeek Harness skill links point into this checkout; moving or deleting the
+  clone breaks them.
 
 ## Provenance and licensing
 

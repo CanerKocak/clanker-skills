@@ -433,6 +433,35 @@ def validate_social_preview(errors: list[str]) -> None:
         )
 
 
+def validate_deepseek_harness_installer(errors: list[str]) -> None:
+    """Require the DeepSeek Harness installation surface and docs."""
+    installer = ROOT / "scripts" / "install_deepseek_harness.py"
+    tests = ROOT / "scripts" / "test_install_deepseek_harness.py"
+    guide = ROOT / "docs" / "deepseek-harness.md"
+    for path in (installer, tests, guide):
+        if not path.is_file():
+            errors.append(
+                f"{path.relative_to(ROOT)}: missing DeepSeek Harness installation surface"
+            )
+    readme_path = ROOT / "README.md"
+    routing_path = ROOT / "docs" / "global-routing.md"
+    if readme_path.is_file() and "DeepSeek Harness" not in readme_path.read_text(
+        encoding="utf-8"
+    ):
+        errors.append("README.md: missing DeepSeek Harness installation section")
+    if routing_path.is_file() and "DeepSeek Harness" not in routing_path.read_text(
+        encoding="utf-8"
+    ):
+        errors.append("docs/global-routing.md: missing DeepSeek Harness routing entry")
+    if installer.is_file():
+        text = installer.read_text(encoding="utf-8")
+        for required in ("clanker-skills", "$DSH_HOME", "AGENTS.md"):
+            if required not in text:
+                errors.append(
+                    f"scripts/install_deepseek_harness.py: missing {required!r}"
+                )
+
+
 def main() -> int:
     errors: list[str] = []
     validate_inventory(errors)
@@ -440,6 +469,7 @@ def main() -> int:
     validate_plugin(errors)
     validate_title_redundancy(errors)
     validate_catalog_surfaces(errors)
+    validate_deepseek_harness_installer(errors)
     validate_links(errors)
     validate_provenance(errors)
     validate_social_preview(errors)

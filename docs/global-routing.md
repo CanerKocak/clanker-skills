@@ -1,8 +1,10 @@
 # Global skill routing
 
 After installing the Codex plugin, add the section below to
-`~/.codex/AGENTS.md`. Keep repository-specific instructions in that
-repository's `AGENTS.md`.
+`~/.codex/AGENTS.md`. For DeepSeek Harness,
+`scripts/install_deepseek_harness.py install` writes the output contract and
+this block into `$DSH_HOME/AGENTS.md`. Keep repository-specific instructions
+in that repository's `AGENTS.md`.
 
 ```markdown
 ## Clanker skill routing
