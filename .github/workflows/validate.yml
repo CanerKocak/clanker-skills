@@ -15,3 +15,5 @@ jobs:
         uses: actions/checkout@v7
       - name: Validate the Codex plugin and skills
         run: python3 scripts/validate_repository.py
+      - name: Test the DeepSeek Harness installer
+        run: python3 scripts/test_install_deepseek_harness.py
