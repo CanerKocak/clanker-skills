@@ -39,6 +39,10 @@ then use `$analyze-data-quality` to assess the data and equations. Apply
 `$uncodixfy` to frontend UI work. Use `$git-hygiene` for commits, branches,
 and history changes, and `$issue-and-pr` for issue and pull request prose.
 
+After pushing commits or starting or rerunning CI, wait at least five minutes
+before checking CI status. Wait at least five minutes between later CI status
+checks. Do other useful work or yield while waiting.
+
 Before editing or publishing durable prose, apply `$prompt-leakage` and its
 deletion test. Use `$simple-english` for technical prose with aircraft-manual
 clarity. Preserve facts, uncertainty, and the difference between requirements
