@@ -1,0 +1,18 @@
+{
+  "name": "clanker-skills",
+  "owner": {
+    "name": "Caner Kocak",
+    "url": "https://github.com/CanerKocak"
+  },
+  "metadata": {
+    "description": "Evidence-first engineering workflows for Claude Code."
+  },
+  "plugins": [
+    {
+      "name": "clanker-skills",
+      "source": "./plugins/clanker-skills",
+      "description": "19 evidence-first skills for planning, code review, call-chain analysis, financial and security audits, data quality, and clear technical writing.",
+      "category": "development"
+    }
+  ]
+}

@@ -272,6 +272,46 @@ TITLE_FILLER_WORDS = frozenset(
 )
 
 
+def validate_claude_plugin(errors: list[str]) -> None:
+    codex_manifest_path = PLUGIN / ".codex-plugin" / "plugin.json"
+    manifest_path = PLUGIN / ".claude-plugin" / "plugin.json"
+    marketplace_path = ROOT / ".claude-plugin" / "marketplace.json"
+    for path in (manifest_path, marketplace_path):
+        if not path.is_file():
+            errors.append(f"{path.relative_to(ROOT)}: missing")
+            return
+
+    try:
+        codex_manifest = json.loads(codex_manifest_path.read_text(encoding="utf-8"))
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        marketplace = json.loads(marketplace_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        errors.append(f"Claude plugin manifests: {exc}")
+        return
+
+    if not isinstance(manifest, dict) or not isinstance(marketplace, dict):
+        errors.append("Claude plugin manifests must be JSON objects")
+        return
+    if manifest.get("name") != "clanker-skills":
+        errors.append("Claude plugin name must be clanker-skills")
+    if isinstance(codex_manifest, dict) and manifest.get("version") != codex_manifest.get("version"):
+        errors.append("Claude plugin version must match the Codex plugin version")
+    if marketplace.get("name") != "clanker-skills":
+        errors.append("Claude marketplace name must be clanker-skills")
+    plugins = marketplace.get("plugins")
+    if (
+        not isinstance(plugins, list)
+        or len(plugins) != 1
+        or not isinstance(plugins[0], dict)
+        or plugins[0].get("name") != "clanker-skills"
+        or plugins[0].get("source") != "./plugins/clanker-skills"
+    ):
+        errors.append(
+            "Claude marketplace must contain exactly one clanker-skills entry "
+            "sourced from ./plugins/clanker-skills"
+        )
+
+
 def validate_title_redundancy(errors: list[str]) -> None:
     for document in sorted(ROOT.rglob("*.md")):
         if ".git" in document.parts:
@@ -467,6 +507,7 @@ def main() -> int:
     validate_inventory(errors)
     validate_skills(errors)
     validate_plugin(errors)
+    validate_claude_plugin(errors)
     validate_title_redundancy(errors)
     validate_catalog_surfaces(errors)
     validate_deepseek_harness_installer(errors)

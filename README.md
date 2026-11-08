@@ -13,7 +13,7 @@
 </div>
 
 Clanker Skills is a curated collection of 19 evidence-first software-engineering
-workflows for Codex and DeepSeek Harness. One plugin contains the skills and
+workflows for Codex, Claude Code, and DeepSeek Harness. One plugin contains the skills and
 their scripts, references, templates, assets, and licenses.
 
 The collection is for work where a successful command is not sufficient
@@ -48,6 +48,34 @@ The Codex package follows the documented
 <code>.codex-plugin/plugin.json</code> manifest and one <code>skills/</code>
 tree.
 
+### Claude Code
+
+The same repository is also a Claude Code plugin marketplace:
+
+~~~bash
+claude plugin marketplace add CanerKocak/clanker-skills
+claude plugin install clanker-skills@clanker-skills
+~~~
+
+Or, inside a session:
+
+~~~text
+/plugin install clanker-skills --marketplace CanerKocak/clanker-skills
+~~~
+
+Start a new Claude Code session after installation. Skills activate from their
+descriptions, or invoke one directly with its namespaced name:
+
+~~~text
+/clanker-skills:writing-plans turn this specification into an implementation plan
+/clanker-skills:edit-the-chain map the owner and blast radius before changing this API
+~~~
+
+The Claude Code package reads the same <code>skills/</code> tree through
+<code>.claude-plugin/plugin.json</code> and the root
+<code>.claude-plugin/marketplace.json</code>; there is no second copy of the
+skills.
+
 ### DeepSeek Harness
 
 DeepSeek Harness scans `$DSH_HOME/skills` for skills and reads user-global
@@ -80,6 +108,13 @@ codex plugin list --marketplace clanker-skills
 Start a new Codex session to load the installed version. Keep plugin skills
 in the plugin; copying them into `~/.codex/skills` or `~/.agents/skills`
 creates a separate installation that can drift.
+
+For Claude Code:
+
+~~~bash
+claude plugin marketplace update clanker-skills
+claude plugin update clanker-skills@clanker-skills
+~~~
 
 For DeepSeek Harness, pull the checkout and re-run
 `scripts/install_deepseek_harness.py install` to refresh the linked skills and
@@ -167,10 +202,12 @@ routing block into `$DSH_HOME/AGENTS.md`; no manual append is needed.
 
 ~~~text
 .agents/plugins/marketplace.json            Codex marketplace catalog
+.claude-plugin/marketplace.json             Claude Code marketplace catalog
 .github/assets/social-preview.png           Repository brand card
 AGENTS.md                                    Table-first output contract
 plugins/clanker-skills/
 ├── .codex-plugin/plugin.json               Codex plugin identity and UI metadata
+├── .claude-plugin/plugin.json              Claude Code plugin identity
 └── skills/<name>/                          Canonical source for all 19 skills
     ├── SKILL.md                            Trigger and workflow contract
     ├── agents/openai.yaml                  Codex display metadata

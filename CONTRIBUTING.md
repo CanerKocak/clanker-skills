@@ -16,7 +16,8 @@ reviewed directly.
 5. Run `python3 scripts/validate_repository.py` from the repository root.
    For workflow changes, also try a realistic request and inspect the result.
 6. Bump the version in `plugins/clanker-skills/.codex-plugin/plugin.json`
-   before publishing a plugin release.
+   and `plugins/clanker-skills/.claude-plugin/plugin.json` together before
+   publishing a plugin release.
 7. Describe the behavior that changed and the evidence used to
    verify it.
 
