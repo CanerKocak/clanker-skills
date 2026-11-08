@@ -1,80 +1,65 @@
 ---
 name: issue-and-pr
 description: >
-  Write issues and pull requests as plain-words engineering tasks. Use when
-  creating or rewriting an issue or pull request, when a draft reads like a
-  filled-in form, or when a report needs its structure rethought.
+  Write issues and pull requests as plain-words engineering tasks with tables
+  for comparable evidence. Use when creating or rewriting an issue or pull
+  request, when a draft reads like a filled-in form, or when a report needs
+  its structure rethought.
 ---
 
 # Issues and pull requests
 
 An issue asks for one change. A pull request delivers one change. Write each
-so a stranger can act without asking for context.
+so a stranger can act on it without asking for context. A second idea gets
+its own issue; an unrelated fix gets its own pull request.
 
-## One idea each
+## Tables
 
-An issue holds one idea. A pull request holds one delivery. A second idea
-gets its own issue; an unrelated fix gets its own pull request. Mixed work
-cannot be accepted or rejected as a unit, so reviewers stall on it.
+Use a Markdown table whenever two or more items share meaningful attributes.
+If prose and a table would be equally clear, choose the table. One row per
+item, specific column headings, short cells, and counts computed from the
+displayed rows. Keep limitations in the row they apply to.
 
-## Shape follows thought
-
-Do not pour every report into the same fixed sections. Labels like problem,
-acceptance, and non-goals turn different thoughts into identical grey text
-and teach readers to skim past them. Instead, say what is happening, what
-should change, and what done looks like, in whatever order fits this case.
-Short reports need only a few sentences; only complex work earns a heading,
-and even then the heading names the thought, not the template slot. Tables
-are tools, not scaffolding: both issues and pull requests use a table where
-it makes evidence digestible at a glance, per Default to tables.
+Use prose for a single fact, a causal explanation, or code. Use an ordered
+list when the order is the point. Never make a one-column or decorative
+table.
 
 ## Issues
 
-Start from something observed, not something felt. Name the behavior, where
-it happens, and the conditions around it: file paths, commands, measured
-numbers with their machine and date. A table is required when there are two
-or more comparable entries: measurements, comparisons, before-and-after.
-One row per item, short cells, counts taken from the displayed rows. Never a
-table for a single fact. Then describe the change you want and
-how to recognize it working. If the reader would need your chat history to
-understand the request, the issue is unfinished: pull the needed facts out
-of the chat and into the text.
+1. Open with what was observed: the behavior, where it happens, and the
+   conditions. Use file paths, commands, and measured numbers with their
+   machine and date.
+2. Put two or more comparable observations in a table: measurements,
+   affected areas, before and after, or findings with severity.
+3. Say what should change and how to recognize it working. For several
+   tasks, use a checklist or a table with an owner or status column.
+
+If the reader would need a chat history to understand the request, pull the
+needed facts into the text.
 
 ## Pull requests
 
-Say what changed and why, in that order, in plain sentences short enough to
-read in one pass. Then use a table for the review evidence whenever there
-are two or more comparable entries: verification commands and what they
-printed, files or areas to look at first, and edge cases checked. One row
-per item, short cells. Keep the diff narrow enough that approval means
-something.
+1. Open with what changed and why, in two to four plain sentences.
+2. Follow with a verification table: each command or check, and what it
+   showed. This table is the default for any pull request with more than
+   one check, including passing ones.
+3. Add a second table when it helps review: files or areas to read first,
+   edge cases checked, or before and after behavior.
 
-## How eyes read
+Skip what the diff already shows, such as file lists without a reason,
+restated commit messages, and process notes about how the work was done.
 
-Readers do not read; they scan until something earns a closer look. Write
-for the scan first. Put the point in the first sentence, because that
-sentence decides whether the second one gets read. Keep lines short so the
-eye never gets lost travelling back to the left edge. One idea per
-paragraph, blank lines between thoughts, and split any paragraph that grows
-past four lines.
+## Structure
 
-Use markdown the way the brain uses landmarks. A table turns scattered facts
-into one glance. A short list turns a procedure into steps the eye can count.
-Code formatting lifts paths and commands off the page so they read as things
-to act on, not as more prose. A heading tells a skimmer what sits below it
-before they commit to reading. None of this is decoration: every marker must
-make the meaning faster to find, or it goes.
+Do not pour every report into fixed sections such as Summary, Problem,
+Solution, Testing, or Non-goals. A heading earns its place only when it
+names the thought below it. Put the point in the first sentence; readers
+scan before they read. Keep paragraphs to four lines or fewer.
 
-## Evidence, not ceremony
+## Evidence
 
-Point at things a stranger can open. Never link a private conversation or
-paste a transcript and call it context. Screen recordings and logs help only
-with the conditions attached. Uncertainty stays visible: mark guesses as
-guesses instead of writing around them. Run $prompt-leakage on the final
-draft so no chat motive, restatement, or conversation-dependency survives.
-
-## Simple English
-
-Short sentences. Common words. No jargon without an explanation on first
-use. Load $simple-english for the full redundancy self-check. For commit messages, branches, and history rewrites, see
-`$git-hygiene`.
+Point at things a stranger can open: paths, commands, logs with their
+conditions. Never link a private conversation or paste a transcript as
+context. Mark guesses as guesses. Run $prompt-leakage on the final draft,
+and use $simple-english for the wording. Commit messages, branches, and
+history rewrites belong to $git-hygiene.
