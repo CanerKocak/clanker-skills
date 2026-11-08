@@ -37,6 +37,10 @@ EXPECTED_SKILLS = (
     "writing-plans",
     "yagni-anti-ceremonial",
 )
+CLAUDE_MARKETPLACE_PLUGINS = {
+    "clanker-skills": "./plugins/clanker-skills",
+    "context-manager": "./plugins/context-manager",
+}
 UNCODIXFY_UPSTREAM_BLOBS = {
     "LICENSE": "19ebb1bd6d27897b0995b635e7634969f3e9e512",
     "README.md": "5948d8b70bc4e595b304c0c17c7a4d6463f2cb45",
@@ -301,15 +305,53 @@ def validate_claude_plugin(errors: list[str]) -> None:
     plugins = marketplace.get("plugins")
     if (
         not isinstance(plugins, list)
-        or len(plugins) != 1
-        or not isinstance(plugins[0], dict)
-        or plugins[0].get("name") != "clanker-skills"
-        or plugins[0].get("source") != "./plugins/clanker-skills"
+        or len(plugins) != len(CLAUDE_MARKETPLACE_PLUGINS)
+        or {
+            entry.get("name"): entry.get("source")
+            for entry in plugins
+            if isinstance(entry, dict)
+        }
+        != CLAUDE_MARKETPLACE_PLUGINS
     ):
-        errors.append(
-            "Claude marketplace must contain exactly one clanker-skills entry "
-            "sourced from ./plugins/clanker-skills"
+        expected = ", ".join(
+            f"{name} from {source}"
+            for name, source in CLAUDE_MARKETPLACE_PLUGINS.items()
         )
+        errors.append(f"Claude marketplace must list exactly these plugins: {expected}")
+
+
+def validate_context_manager(errors: list[str]) -> None:
+    plugin = ROOT / "plugins" / "context-manager"
+    manifest_path = plugin / ".claude-plugin" / "plugin.json"
+    hooks_path = plugin / "hooks" / "hooks.json"
+    for path in (manifest_path, hooks_path):
+        if not path.is_file():
+            errors.append(f"{path.relative_to(ROOT)}: missing")
+            return
+
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        hooks = json.loads(hooks_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        errors.append(f"context-manager manifests: {exc}")
+        return
+
+    if not isinstance(manifest, dict) or not isinstance(hooks, dict):
+        errors.append("context-manager manifests must be JSON objects")
+        return
+    if manifest.get("name") != "context-manager":
+        errors.append("context-manager plugin name must be context-manager")
+    if not re.fullmatch(r"\d+\.\d+\.\d+", str(manifest.get("version", ""))):
+        errors.append("context-manager plugin version must use semantic versioning")
+    modules = hooks.get("modules")
+    if not isinstance(modules, list) or not modules:
+        errors.append("context-manager hooks.json must list its modules")
+        return
+    for module in modules:
+        if not isinstance(module, str) or not (hooks_path.parent / module).is_file():
+            errors.append(
+                f"{hooks_path.relative_to(ROOT)}: hooks module {module!r} is missing"
+            )
 
 
 def validate_title_redundancy(errors: list[str]) -> None:
@@ -508,6 +550,7 @@ def main() -> int:
     validate_skills(errors)
     validate_plugin(errors)
     validate_claude_plugin(errors)
+    validate_context_manager(errors)
     validate_title_redundancy(errors)
     validate_catalog_surfaces(errors)
     validate_deepseek_harness_installer(errors)

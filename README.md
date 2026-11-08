@@ -76,6 +76,19 @@ The Claude Code package reads the same <code>skills/</code> tree through
 <code>.claude-plugin/marketplace.json</code>; there is no second copy of the
 skills.
 
+### Claude Code only: context manager
+
+The Claude Code marketplace lists a second plugin, `context-manager`. It is not
+a skill. It lets Claude read its own context use and compact the conversation
+at a point it chooses. Codex and DeepSeek Harness do not load it.
+
+~~~bash
+claude plugin install context-manager@clanker-skills
+~~~
+
+The [plugin README](plugins/context-manager/README.md) explains when Claude may
+compact and what the plugin does not cover.
+
 ### DeepSeek Harness
 
 DeepSeek Harness scans `$DSH_HOME/skills` for skills and reads user-global
@@ -212,6 +225,11 @@ plugins/clanker-skills/
     ├── SKILL.md                            Trigger and workflow contract
     ├── agents/openai.yaml                  Codex display metadata
     └── references|scripts|templates|...    Package-owned resources
+plugins/context-manager/
+├── .claude-plugin/plugin.json              Claude Code plugin identity
+├── hooks/                                  Hooks module that runs on Claude Code events
+├── tests/                                  Plugin tests, run with claude plugin test
+└── types/index.d.ts                        Types for the state the plugin keeps
 scripts/install_deepseek_harness.py         DeepSeek Harness installer
 scripts/test_install_deepseek_harness.py    Installer regression tests
 scripts/validate_repository.py              Dependency-free repository validation

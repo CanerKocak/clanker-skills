@@ -13,6 +13,12 @@
       "source": "./plugins/clanker-skills",
       "description": "19 evidence-first skills for planning, code review, call-chain analysis, financial and security audits, data quality, and clear technical writing.",
       "category": "development"
+    },
+    {
+      "name": "context-manager",
+      "source": "./plugins/context-manager",
+      "description": "Lets Claude check its own context usage and compact the conversation at a boundary it chooses.",
+      "category": "development"
     }
   ]
 }

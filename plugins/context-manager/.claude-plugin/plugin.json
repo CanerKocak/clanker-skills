@@ -1,0 +1,17 @@
+{
+  "name": "context-manager",
+  "version": "0.1.0",
+  "description": "Lets Claude check its own context usage and compact the conversation at a boundary it chooses.",
+  "author": {
+    "name": "Caner Kocak",
+    "url": "https://github.com/CanerKocak"
+  },
+  "homepage": "https://github.com/CanerKocak/clanker-skills/tree/main/plugins/context-manager#readme",
+  "repository": "https://github.com/CanerKocak/clanker-skills",
+  "keywords": [
+    "claude-code",
+    "compaction",
+    "context-window"
+  ],
+  "types": "./types/index.d.ts"
+}
