@@ -128,8 +128,10 @@ in the `env` block of `~/.claude/settings.json`:
 | Boundary | Detail |
 | --- | --- |
 | Host | Claude Code only. |
-| Version | Built and tested with Claude Code 2.1.317. Other versions are untested. |
-| Tested | 16 unit tests, and one live compaction in the Claude desktop app. A terminal session is untested. |
+| Version | Built on Claude Code 2.1.317 and checked on 2.1.319. Other versions are untested. Claude Code lists the API this plugin uses as early access, so a later release may change it. |
+| Tested on 2.1.317 | 16 unit tests, and one live compaction in the Claude desktop app. |
+| Tested on 2.1.319 | 16 unit tests, and an install from this repository. The plugin also loaded in a `claude -p` run, which answers one prompt without the interface. In that run both tools were registered, `context_status` returned real figures, and the usage line reached the model. |
+| Not tested | An interactive terminal session, and a self-compaction in a terminal. |
 | Timing | A compaction runs after the turn ends, never during it. |
 | Summary | Claude Code writes the summary. `keep` guides it, but the summary can still drop a detail. The full transcript stays on disk at `~/.claude/projects/*/<session id>.jsonl`. |
 | Scope | Only the main conversation can compact itself. A subagent cannot. |
