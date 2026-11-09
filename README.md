@@ -208,7 +208,9 @@ not a promise that no bugs remain.
 The [routing block](docs/global-routing.md) provides an optional addition to
 `~/.codex/AGENTS.md`. It selects skills by task, preserves continuity when
 runtime tools are available, and distinguishes settings from execution evidence.
-Keep it consistent with your existing global instructions. For DeepSeek
+Keep it consistent with your existing global instructions. Claude Code users
+can also paste the [reply rules](docs/global-claude-md.md) into
+`~/.claude/CLAUDE.md`. For DeepSeek
 Harness, `scripts/install_deepseek_harness.py install` writes the contract and
 routing block into `$DSH_HOME/AGENTS.md`; no manual append is needed.
 
