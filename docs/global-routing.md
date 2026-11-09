@@ -49,6 +49,12 @@ clarity. Preserve facts, uncertainty, and the difference between requirements
 and recommendations. Do not apply this style to marketing or brand copy
 unless requested. Keep internal review notes out of the artifact.
 
+Use `$i-have-adhd` only when the reader asks for it. It changes the shape of
+the reply, not the Clanker output contract: put the result or next action
+first, keep comparable items in a table of at most five rows per group, and
+end an agentic loop with one closing message that states what changed, what
+was verified, and the one next action.
+
 Use tables for comparable findings, inventories, and mappings. Use prose for
 causal explanations and ordered steps for procedures. Preserve the evidence
 and its limits in the form that best helps the reader.

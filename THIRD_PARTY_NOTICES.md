@@ -16,3 +16,21 @@ complete license text remains in the package at
 
 This notice applies only to that package. The repository does not currently
 grant a blanket license for the remaining material.
+
+## i-have-adhd
+
+The package at `plugins/clanker-skills/skills/i-have-adhd` is derived from
+[ayghri/i-have-adhd](https://github.com/ayghri/i-have-adhd).
+
+Its upstream payload—`SKILL.md` and `LICENSE`—matches upstream commit
+[`1ecea1993b7fce257ffbd686c070948b5e07eda6`](https://github.com/ayghri/i-have-adhd/tree/1ecea1993b7fce257ffbd686c070948b5e07eda6).
+This collection adds `brand_color` to `agents/openai.yaml`, which the
+repository validator requires. Upstream's other runtime adapters are not
+included.
+
+It is distributed under the MIT License. Copyright © 2026 Ayoub Ghriss. The
+complete license text remains in the package at
+[`plugins/clanker-skills/skills/i-have-adhd/LICENSE`](plugins/clanker-skills/skills/i-have-adhd/LICENSE).
+
+This notice applies only to that package. The repository does not currently
+grant a blanket license for the remaining material.

@@ -7,12 +7,12 @@
 
   <p>
     <a href="https://github.com/CanerKocak/clanker-skills/actions/workflows/validate.yml"><img src="https://github.com/CanerKocak/clanker-skills/actions/workflows/validate.yml/badge.svg" alt="Repository validation status"></a>
-    <img src="https://img.shields.io/badge/skills-19-D7FF64?style=flat-square&labelColor=101310" alt="19 bundled skills">
+    <img src="https://img.shields.io/badge/skills-20-D7FF64?style=flat-square&labelColor=101310" alt="20 bundled skills">
     <img src="https://img.shields.io/badge/Codex-plugin-D7FF64?style=flat-square&labelColor=101310" alt="Codex plugin">
   </p>
 </div>
 
-Clanker Skills is a curated collection of 19 evidence-first software-engineering
+Clanker Skills is a curated collection of 20 evidence-first software-engineering
 workflows for Codex, Claude Code, and DeepSeek Harness. One plugin contains the skills and
 their scripts, references, templates, assets, and licenses.
 
@@ -200,6 +200,7 @@ not a promise that no bugs remain.
 | --- | --- | --- |
 | [<code>uncodixfy</code>](plugins/clanker-skills/skills/uncodixfy/SKILL.md) | Generating or revising frontend HTML, CSS, React, Vue, Svelte, or product UI. | Avoids generic agent-generated dashboard patterns in favor of product-specific hierarchy, spacing, motion, and color. |
 | [<code>prompt-leakage</code>](plugins/clanker-skills/skills/prompt-leakage/SKILL.md) | Comments, READMEs, instructions, review text, and commit messages. | Removes chat motives, restatements, and reviewer theater while retaining information that a stranger cannot infer. |
+| [<code>i-have-adhd</code>](plugins/clanker-skills/skills/i-have-adhd/SKILL.md) | Replies for a reader with ADHD, enabled on request with `/i-have-adhd` until "stop adhd mode". | Leads with the next action, numbers multi-step work, restates progress, gives concrete time estimates, and ends on one action; comparable items stay in tables of five rows or fewer per group. |
 | [<code>simple-english</code>](plugins/clanker-skills/skills/simple-english/SKILL.md) | Technical documentation, procedures, runbooks, error messages, and API guides. | Uses aircraft-manual clarity while preserving facts, uncertainty, and obligations; checks strict STE rules when requested. |
 
 ## Make routing automatic
@@ -265,7 +266,8 @@ the DeepSeek Harness install path and managed `AGENTS.md` block covered.
 
 ## Provenance and licensing
 
-<code>uncodixfy</code> retains its upstream MIT License and is recorded in
+<code>uncodixfy</code> and <code>i-have-adhd</code> retain their upstream MIT
+Licenses and are recorded in
 [<code>THIRD_PARTY_NOTICES.md</code>](THIRD_PARTY_NOTICES.md). The repository
 does not grant a blanket license for the remaining material. Public access
 alone is not permission to copy, modify, or redistribute those packages; a

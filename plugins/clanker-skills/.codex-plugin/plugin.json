@@ -20,7 +20,7 @@
   "interface": {
     "displayName": "Clanker Skills",
     "shortDescription": "Evidence-first engineering workflows for Codex.",
-    "longDescription": "A curated collection of 19 Codex skills for planning, code review, call-chain analysis, financial and security audits, source investigation, data quality, frontend quality, and clear technical writing.",
+    "longDescription": "A curated collection of 20 Codex skills for planning, code review, call-chain analysis, financial and security audits, source investigation, data quality, frontend quality, and clear technical writing.",
     "developerName": "Caner Kocak",
     "category": "Developer Tools",
     "capabilities": [],

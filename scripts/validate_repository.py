@@ -28,6 +28,7 @@ EXPECTED_SKILLS = (
     "gather-business-context",
     "giga-review",
     "git-hygiene",
+    "i-have-adhd",
     "issue-and-pr",
     "prompt-leakage",
     "semantic-blast-radius",
@@ -51,6 +52,10 @@ UNCODIXFY_UPSTREAM_BLOBS = {
     "images/3.png": "c4a4fbb910c30e283322718e06051e962b2319b6",
     "images/4.png": "8ad923298a6116771da14fedf682450cf1f9a0ed",
     "images/thumb.jpg": "c95fc759edde030f9a1f16eaa45369c8388cf44a",
+}
+I_HAVE_ADHD_UPSTREAM_BLOBS = {
+    "LICENSE": "19db5f1b0ca65e277c158bd4c4263139ccfd859c",
+    "SKILL.md": "6c42757ffae37e442adfb52fbba2a8609f1cff00",
 }
 NAME_PATTERN = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 MARKDOWN_LINK = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
@@ -482,6 +487,20 @@ def validate_provenance(errors: list[str]) -> None:
                 f"{source_path.relative_to(ROOT)}: upstream blob changed; "
                 "update provenance before publishing"
             )
+    adhd_path = SKILLS / "i-have-adhd"
+    for relative_path, expected_blob in I_HAVE_ADHD_UPSTREAM_BLOBS.items():
+        source_path = adhd_path / relative_path
+        if not source_path.is_file():
+            errors.append(f"{source_path.relative_to(ROOT)}: missing upstream payload")
+            continue
+        payload = source_path.read_bytes()
+        header = f"blob {len(payload)}\0".encode()
+        actual_blob = hashlib.sha1(header + payload, usedforsecurity=False).hexdigest()
+        if actual_blob != expected_blob:
+            errors.append(
+                f"{source_path.relative_to(ROOT)}: upstream blob changed; "
+                "update provenance before publishing"
+            )
     if not notices_path.is_file():
         errors.append("THIRD_PARTY_NOTICES.md: missing")
     else:
@@ -491,6 +510,10 @@ def validate_provenance(errors: list[str]) -> None:
             "https://github.com/cyxzdev/Uncodixfy",
             "e0e028058b5259debdd94b78147c6d6c77bf7da2",
             "MIT License",
+            "plugins/clanker-skills/skills/i-have-adhd",
+            "https://github.com/ayghri/i-have-adhd",
+            "1ecea1993b7fce257ffbd686c070948b5e07eda6",
+            "Copyright © 2026 Ayoub Ghriss",
         )
         for value in required:
             if value not in notices:
