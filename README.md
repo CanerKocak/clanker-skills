@@ -154,8 +154,12 @@ hand on each machine after each update:
 
    If that directory is missing, use the same files on the `main` branch of
    this repository.
-3. In `~/.claude/CLAUDE.md`, find the Clanker region. It starts at the
-   `# Clanker output contract` heading. It ends where the
+3. In `~/.claude/CLAUDE.md`, find the Clanker region. If the file has the
+   lines `<!-- clanker-skills:start -->` and `<!-- clanker-skills:end -->`,
+   the region is the text between them. Keep both marker lines, and change
+   the commit hash in the `<!-- Source: ... -->` comment after the start
+   marker to the new `main` commit. Without markers, the region starts at the
+   `# Clanker output contract` heading and ends where the
    `## Clanker skill routing` section ends: at the next heading after that
    section, or at the end of the file. If the file has no Clanker region, add
    the new text at the top of the file.
