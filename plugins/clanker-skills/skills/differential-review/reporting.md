@@ -13,12 +13,22 @@ Generate markdown report with these mandatory sections:
 List every candidate that could affect severity or the requested decision. Do
 not count raw reviewer or tool findings as accepted findings.
 
+The ledger is two tables that share the candidate row label, so each fits a
+terminal. Put a runtime boundary on one line under the second table, keyed by
+the candidate.
+
 ```markdown
 ## Adjudication Ledger
 
-| Candidate | Contract | Reachability | Policy/intent | Counterevidence | Runtime boundary | Disposition | Decision bridge |
-|---|---|---|---|---|---|---|---|
-| C-1 | ... | ... | ... | ... | ... | LIVE/POLICY/PARTIAL/... | contract citation or NONE |
+| Candidate | Disposition | Decision bridge | Contract |
+|---|---|---|---|
+| C-1 | LIVE/POLICY/PARTIAL/... | contract citation or NONE | ... |
+
+| Candidate | Reachability | Policy/intent | Counterevidence |
+|---|---|---|---|
+| C-1 | ... | ... | ... |
+
+C-1 runtime boundary: ... or NONE
 ```
 
 Only `LIVE` and justified `RESIDUAL` entries are findings. Record `POLICY`
@@ -85,10 +95,10 @@ the same call chain is not adjudication.
 **Commits:** X
 **Timeline:** YYYY-MM-DD to YYYY-MM-DD
 
-| File | +Lines | -Lines | Review Priority | Blast Radius |
-|------|--------|--------|------|--------------|
-| file1.sol | +50 | -20 | HIGH | VERY BROAD |
-| file2.sol | +10 | -5 | MEDIUM | NARROW |
+| File | Lines | Review Priority | Blast Radius |
+|------|-------|-----------------|--------------|
+| file1.sol | +50 / -20 | HIGH | VERY BROAD |
+| file2.sol | +10 / -5 | MEDIUM | NARROW |
 
 **Total:** +N, -M lines across K files
 ```
@@ -319,7 +329,10 @@ role or written-acceptance requirement.
 
 ## Formatting Guidelines
 
-**Tables:** Use markdown tables for structured data
+**Tables:** Use markdown tables for structured data. Keep each table to 2-4
+columns and short cells, with the row label first. Put a long reason on one
+line under the table, keyed by the row label. Split a wider table into two
+tables that share the row label.
 
 **Code blocks:** Always include syntax highlighting
 ```solidity

@@ -130,10 +130,11 @@ every unresolved boundary. Follow through to observable harm and state recovery.
 ## 6. Report the bounded result
 
 Lead with findings and the exact scope. Use tables for comparable findings and
-coverage. Report the snapshot, differential attribution, both scout runs per
-branch, reconciliation deltas, reviewed/total counts, blocked rows, exclusions,
-tests actually executed, and remaining uncertainty. Show zero findings when
-appropriate, not a fabricated issue for each branch.
+coverage: 2-4 columns, short cells, the row label first, and long reasons on
+one line under the table. Report the snapshot, differential attribution, both
+scout runs per branch, reconciliation deltas, reviewed/total counts, blocked
+rows, exclusions, tests actually executed, and remaining uncertainty. Show zero
+findings when appropriate, not a fabricated issue for each branch.
 
 Completion requires every file, changed hunk, relevant edge, and branch item to
 have an evidenced disposition; every candidate must be confirmed, rejected, or

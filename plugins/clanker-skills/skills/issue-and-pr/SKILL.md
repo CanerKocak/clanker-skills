@@ -17,8 +17,13 @@ its own issue; an unrelated fix gets its own pull request.
 
 Use a Markdown table whenever two or more items share meaningful attributes.
 If prose and a table would be equally clear, choose the table. One row per
-item, specific column headings, short cells, and counts computed from the
-displayed rows. Keep limitations in the row they apply to.
+item, specific column headings, and counts computed from the displayed rows.
+Keep limitations with the row they apply to.
+
+Keep each table narrow enough for an 80-120 column terminal. Use 2 to 4
+columns and cells of about 8 words, with no full sentences. The first column
+names the item. Put a long reason on one line under the table, keyed by the
+row label. Split a wider table into two tables, or use a numbered list.
 
 Use prose for a single fact, a causal explanation, or code. Use an ordered
 list when the order is the point. Never make a one-column or decorative

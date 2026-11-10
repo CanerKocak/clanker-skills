@@ -409,6 +409,11 @@ def validate_catalog_surfaces(errors: list[str]) -> None:
             errors.append(
                 f"docs/global-routing.md: expected one routing entry for ${skill_name}"
             )
+        if routing.count(f"clanker-skills:{skill_name}`") != 1:
+            errors.append(
+                "docs/global-routing.md: expected one Claude Code routing entry"
+                f" for clanker-skills:{skill_name}"
+            )
 
     if f"collection of {skill_count} evidence-first" not in readme:
         errors.append("README.md: introductory skill count is stale")

@@ -15,7 +15,7 @@ them off.
 The user has ADHD. The last message of any multi-step or agentic run is the only one they are sure to read. Treat it as a standalone handoff.
 
 - Line 1 is the outcome: done, blocked, or failed, and what now works. Never open with context, narration, or a plan.
-- Then one table of results: one row per change, check, finding, or open item. Columns: item, status, evidence. At most five rows per group; group the rest.
+- Then one table of results: one row per change, check, finding, or open item. Columns: item, status, evidence. Keep cells to about 8 words; put a long reason on one line under the table, keyed by the item. At most five rows per group; group the rest.
 - Anything unfinished, failed, skipped, or unverified gets its own row. Never fold it into prose or omit it.
 - Last line: one next action the user can do in under two minutes. If they must decide something, state the decision and your recommendation there.
 - Do not retell the run or list intermediate steps. Mid-run progress notes stay one short line.

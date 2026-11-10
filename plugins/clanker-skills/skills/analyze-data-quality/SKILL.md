@@ -108,10 +108,14 @@ cost, or margin discrepancy a verified defect or recommending a repair.
 
 1. Name the canonical equation and its authority. Distinguish nominal payment,
    reusable or refundable credit, accrued obligation, and realized cost.
-2. Build this matrix at the exact entity and event grain:
+2. Build this matrix at the exact entity and event grain. It is two tables
+   that share the entity/state row label, so each fits a terminal:
 
-   | Entity/state | Transition producer and guard | Persisted amount/status | Writer and idempotency identity | Downstream readers or compensation | Retry/terminal behavior | Evidence |
-   |---|---|---|---|---|---|---|
+   | Entity/state | Transition producer and guard | Persisted amount/status | Writer and idempotency identity |
+   |---|---|---|---|
+
+   | Entity/state | Downstream readers or compensation | Retry/terminal behavior | Evidence |
+   |---|---|---|---|
 
 3. Include application and worker code, database triggers, migrations,
    backfills, replays, retries, recovery jobs, admin/manual actions, and external
@@ -225,7 +229,8 @@ When code was used, include or save a notebook containing the key SQL and Python
 
 ### Defaults
 
-- Prefer small, high-signal tables over exhaustive dumps.
+- Prefer small, high-signal tables over exhaustive dumps. Keep each table to
+  2-4 columns with short cells and the row label first; split a wider one.
 - Compare rates, not just counts.
 - Break checks out by time and key segments whenever possible.
 - Normalize strings before judging duplicates or distinct-count spikes.

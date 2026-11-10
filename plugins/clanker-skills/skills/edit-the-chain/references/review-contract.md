@@ -137,10 +137,14 @@ and deletes meaningful complexity inside the authorized scope.
 
 ## 7. Acceptance ledger
 
-Keep one internal row per obligation:
+Keep one internal row per obligation, in two tables that share the
+obligation row label so that each fits a terminal:
 
-| Obligation | Candidate/runtime | Evidence | Distinct miss covered | Status | Invalidation condition |
-|---|---|---|---|---|---|
+| Obligation | Status | Candidate/runtime | Evidence |
+|---|---|---|---|
+
+| Obligation | Distinct miss covered | Invalidation condition |
+|---|---|---|
 
 Status is `verified`, `partial`, or `open`. Completion requires no open blocking
 obligation. `Partial` is an honest terminal state only when the limitation is

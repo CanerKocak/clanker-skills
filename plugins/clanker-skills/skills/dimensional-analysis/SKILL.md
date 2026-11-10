@@ -67,10 +67,12 @@ or create a second coverage ledger.
 
 ## Required output
 
-Use tables for multiple comparable records or findings. Include the snapshot,
-scout reconciliation, units vocabulary, reviewed/total numeric records and
-boundaries, concrete findings, rejected candidates, and exact gaps. Count from
-the ledger, not estimates. If broad coverage is incomplete, report PARTIAL.
+Use tables for multiple comparable records or findings. Keep them to 2-4
+columns with short cells and the row label first; put a long reason on one line
+under the table. Include the snapshot, scout reconciliation, units vocabulary,
+reviewed/total numeric records and boundaries, concrete findings, rejected
+candidates, and exact gaps. Count from the ledger, not estimates. If broad
+coverage is incomplete, report PARTIAL.
 
 For each finding show the producer -> conversion -> consumer path, actual and
 required numeric records, a violating input, the financial or operational

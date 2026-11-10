@@ -113,11 +113,15 @@ verbose, unfamiliar, or generated-looking.
 
 ## Evidence and output gate
 
-Use this compact table while working. When a canonical impact graph exists,
-return only new, disputed, or corrected edges:
+Use these two tables while working. They share the symbol row label, so each
+fits a terminal. When a canonical impact graph exists, return only new,
+disputed, or corrected edges:
 
-| Symbol or invariant | Definition | Callers | Callees/sinks | Type/parameter result | Variants | Structural status |
-|---|---|---|---|---|---|---|
+| Symbol or invariant | Definition | Callers | Callees/sinks |
+|---|---|---|---|
+
+| Symbol or invariant | Type/parameter result | Variants | Structural status |
+|---|---|---|---|
 
 Use only `EDGE_VERIFIED`, `PATH_PARTIAL`, or `PATH_OPEN` in the structural-status
 column. Add `BUG STATUS: UNADJUDICATED` whenever the table contributes to a bug,

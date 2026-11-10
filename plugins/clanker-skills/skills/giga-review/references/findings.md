@@ -60,12 +60,15 @@ variant remains in coverage so a future worker does not rediscover it.
 
 ## Report schema
 
-Include summary tables for multiple findings and per-branch coverage. A finding
-record contains location and snapshot, invariant, trigger/reproducer, complete
-call/effect chain, impact, checked counterevidence, evidence strength, attribution,
-and variant coverage. Assign severity from demonstrated harm and reachability,
-separately from confidence and review priority. Suggest only a remedy supported
-by the established contract; do not implement it during a review.
+Include summary tables for multiple findings and per-branch coverage. Keep each
+summary table to 2-4 columns with short cells, such as finding, severity,
+location, and status. Put the full finding record below the tables, not in a
+cell. A finding record contains location and snapshot, invariant,
+trigger/reproducer, complete call/effect chain, impact, checked
+counterevidence, evidence strength, attribution, and variant coverage. Assign
+severity from demonstrated harm and reachability, separately from confidence
+and review priority. Suggest only a remedy supported by the established
+contract; do not implement it during a review.
 
 Coverage shows files, hunks in diff mode, edges, and branch items as separate
 populations. Show both scout run identifiers, A/B-only additions, resolved

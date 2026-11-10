@@ -14,10 +14,14 @@ each skill to rediscover the whole map. Give them this graph: AST review adds or
 challenges structural edges; invariant review classifies verified nodes into
 applicable product surfaces.
 
-Use this graph schema:
+Use this graph schema. The row label is the canonical identity of the node
+or edge:
 
-| Node or edge | Canonical identity | Evidence | Boundary or surface | Status |
-|---|---|---|---|---|
+| Node or edge (canonical identity) | Boundary or surface | Status | Evidence |
+|---|---|---|---|
+
+Keep cells short, such as a `path:line` citation in the evidence cell. Put a
+longer note on one line under the table, keyed by the row label.
 
 Include roots, definitions, producers, consumers, callers, callees, state or
 serialization boundaries, dynamic wiring, tests, and the unresolved frontier.

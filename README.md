@@ -129,6 +129,52 @@ claude plugin marketplace update clanker-skills
 claude plugin update clanker-skills@clanker-skills
 ~~~
 
+Then refresh the global guidance as the next section shows.
+
+### Refresh global guidance in Claude Code
+
+Claude Code has no installer for global guidance. The plugin update changes
+the skills only. The output contract and the routing block live in
+`~/.claude/CLAUDE.md`, which the plugin does not write. Refresh that file by
+hand on each machine after each update:
+
+1. Update the marketplace and the plugin:
+
+   ~~~bash
+   claude plugin marketplace update clanker-skills
+   claude plugin update clanker-skills@clanker-skills
+   ~~~
+
+2. Read the two source files in the updated marketplace checkout. Do not edit
+   them; Claude Code manages that directory.
+   - `~/.claude/plugins/marketplaces/clanker-skills/AGENTS.md` is the output
+     contract.
+   - `~/.claude/plugins/marketplaces/clanker-skills/docs/global-routing.md`,
+     section "Claude Code", holds the routing block.
+
+   If that directory is missing, use the same files on the `main` branch of
+   this repository.
+3. In `~/.claude/CLAUDE.md`, find the Clanker region. It starts at the
+   `# Clanker output contract` heading. It ends where the
+   `## Clanker skill routing` section ends: at the next heading after that
+   section, or at the end of the file. If the file has no Clanker region, add
+   the new text at the top of the file.
+4. Replace the Clanker region with the full text of `AGENTS.md`, one blank
+   line, and the text inside the fenced `markdown` block under "Claude Code"
+   in `global-routing.md`. Do not copy the fence lines. Copy the text exactly.
+   Skill names must stay in the `clanker-skills:<name>` form; the `$<name>`
+   form is for Codex.
+5. Do not change other text in `~/.claude/CLAUDE.md`. If the file also holds
+   the [reply rules](docs/global-claude-md.md), replace them with the current
+   block from that page.
+6. Make sure that the new text is in place. This command prints one line:
+
+   ~~~bash
+   grep -n '^## Keep tables narrow' ~/.claude/CLAUDE.md
+   ~~~
+
+7. Start a new Claude Code session to load the new guidance.
+
 For DeepSeek Harness, pull the checkout and re-run
 `scripts/install_deepseek_harness.py install` to refresh the linked skills and
 the managed `AGENTS.md` section.
@@ -208,9 +254,11 @@ not a promise that no bugs remain.
 The [routing block](docs/global-routing.md) provides an optional addition to
 `~/.codex/AGENTS.md`. It selects skills by task, preserves continuity when
 runtime tools are available, and distinguishes settings from execution evidence.
-Keep it consistent with your existing global instructions. Claude Code users
-can also paste the [reply rules](docs/global-claude-md.md) into
-`~/.claude/CLAUDE.md`. For DeepSeek
+Keep it consistent with your existing global instructions. Claude Code uses
+its own form of the block in `~/.claude/CLAUDE.md`; follow
+[Refresh global guidance in Claude Code](#refresh-global-guidance-in-claude-code).
+Claude Code users can also paste the [reply rules](docs/global-claude-md.md)
+into `~/.claude/CLAUDE.md`. For DeepSeek
 Harness, `scripts/install_deepseek_harness.py install` writes the contract and
 routing block into `$DSH_HOME/AGENTS.md`; no manual append is needed.
 
@@ -220,7 +268,7 @@ routing block into `$DSH_HOME/AGENTS.md`; no manual append is needed.
 .agents/plugins/marketplace.json            Codex marketplace catalog
 .claude-plugin/marketplace.json             Claude Code marketplace catalog
 .github/assets/social-preview.png           Repository brand card
-AGENTS.md                                    Table-first output contract
+AGENTS.md                                    Table-first output contract with width limits
 plugins/clanker-skills/
 ├── .codex-plugin/plugin.json               Codex plugin identity and UI metadata
 ├── .claude-plugin/plugin.json              Claude Code plugin identity
