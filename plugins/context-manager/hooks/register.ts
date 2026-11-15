@@ -17,8 +17,6 @@ const STATUS_TOOL = 'mcp__context-manager__context_status'
 const MIN_SHARE = 0.25
 // A quarter of the compaction window, when that window cannot be read.
 const QUARTER_FALLBACK = 100_000
-const MAX_KEEP_CHARS = 4_000
-const MAX_NEXT_STEP_CHARS = 2_000
 // The compaction starts from a timer, outside the turn.complete hook that
 // `$.command.run` refuses to run inside; a prompt the person queued meanwhile
 // starts first and wins.
@@ -481,15 +479,7 @@ export const register: Register = on => {
     }
     const keep = typeof input.keep === 'string' ? input.keep.trim() : ''
     if (keep === '') return { deny: 'Give `keep`: what the summary must preserve.' }
-    if (keep.length > MAX_KEEP_CHARS) {
-      return { deny: `\`keep\` is ${keep.length} characters; keep it under ${MAX_KEEP_CHARS}.` }
-    }
     const nextStep = typeof input.next_step === 'string' ? input.next_step.trim() : ''
-    if (nextStep.length > MAX_NEXT_STEP_CHARS) {
-      return {
-        deny: `\`next_step\` is ${nextStep.length} characters; keep it under ${MAX_NEXT_STEP_CHARS}.`,
-      }
-    }
     if ((await queuedRequest($)) !== null) {
       return { deny: 'A self-compaction is already queued for the end of this turn. Close the turn.' }
     }
