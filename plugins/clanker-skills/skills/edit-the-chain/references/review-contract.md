@@ -63,6 +63,23 @@ external APIs, lifecycle states, exact-once behavior, units, decimal scaling,
 valuation time, permissions, retries, and stale or partial data. It distinguishes
 logic-unit tests from evidence against the deployed boundary.
 
+Record each applicable check in its own row in the
+[acceptance ledger](#7-acceptance-ledger).
+
+- **Incident replay.** When a fix depends on live inputs, run the same observed
+  request or replay the same recorded inputs against the affected release and
+  the candidate. Use a read-only preview or isolated replay for operations
+  with side effects. If several independent limits can cause the reported
+  failure, test each with the other inputs in range. If the original inputs
+  are missing, state what the sampled case proves and mark any unsupported
+  incident claim `partial`.
+- **Rollout and rollback.** When a change alters records or messages that
+  another process reads later, trace the actual deployment order. Test new
+  writes with the deployed reader and existing records with the new reader
+  wherever those combinations can occur. Check recovery of in-flight work
+  where rollback is supported. If safety depends on a pause or upgrade order,
+  verify that the release process enforces it.
+
 ### Evidence audit
 
 Audits the acceptance ledger itself. It looks for proxy evidence, copied
