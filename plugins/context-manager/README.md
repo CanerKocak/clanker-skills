@@ -26,7 +26,7 @@ The plugin also gives Claude two tools:
 | Tool | What it does | Input |
 | --- | --- | --- |
 | `context_status` | Reports the tokens in use, the compaction window, and where automatic compaction starts. Also reports whether Claude may compact now, any queued compaction, the last result, and the path of the full transcript. Changes nothing. | None |
-| `compact_context` | Queues a compaction for the end of the current turn. | `keep` (required, at most 4,000 characters): what the summary must preserve.<br>`next_step` (optional, at most 2,000 characters): what Claude does right after. |
+| `compact_context` | Queues a compaction for the end of the current turn. | `keep` (required): what the summary must preserve.<br>`next_step` (optional): what Claude does right after. |
 
 ## How a self-compaction runs
 
