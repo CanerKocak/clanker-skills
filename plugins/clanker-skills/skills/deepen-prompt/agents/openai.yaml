@@ -1,0 +1,5 @@
+interface:
+  display_name: "Deepen a Prompt"
+  short_description: "Give an existing prompt a method and a test"
+  brand_color: "#D7FF64"
+  default_prompt: "Use $deepen-prompt to sharpen this request while keeping its deliverable and constraints."

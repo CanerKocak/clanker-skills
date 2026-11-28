@@ -7,12 +7,12 @@
 
   <p>
     <a href="https://github.com/CanerKocak/clanker-skills/actions/workflows/validate.yml"><img src="https://github.com/CanerKocak/clanker-skills/actions/workflows/validate.yml/badge.svg" alt="Repository validation status"></a>
-    <img src="https://img.shields.io/badge/skills-20-D7FF64?style=flat-square&labelColor=101310" alt="20 bundled skills">
+    <img src="https://img.shields.io/badge/skills-21-D7FF64?style=flat-square&labelColor=101310" alt="21 bundled skills">
     <img src="https://img.shields.io/badge/Codex-plugin-D7FF64?style=flat-square&labelColor=101310" alt="Codex plugin">
   </p>
 </div>
 
-Clanker Skills is a curated collection of 20 evidence-first software-engineering
+Clanker Skills is a curated collection of 21 evidence-first software-engineering
 workflows for Codex, Claude Code, and DeepSeek Harness. One plugin contains the skills and
 their scripts, references, templates, assets, and licenses.
 
@@ -210,6 +210,7 @@ Choose the smallest workflow that fits the task.
 
 | Skill | Use it for | Core contract |
 | --- | --- | --- |
+| [<code>deepen-prompt</code>](plugins/clanker-skills/skills/deepen-prompt/SKILL.md) | Prompt rewrites with a fixed scope. | Grounds the rewrite in primary material, method, and independent evidence. |
 | [<code>writing-plans</code>](plugins/clanker-skills/skills/writing-plans/SKILL.md) | A specification or requirements for a multi-step task, before implementation begins. | Produces an implementation-ready plan with exact files, interfaces, tests, verification commands, and no placeholder steps. |
 | [<code>adaptive-code-orchestrator</code>](plugins/clanker-skills/skills/adaptive-code-orchestrator/SKILL.md) | Uncertain, cross-cutting, or high-risk repository work. | Chooses solo work, bounded reconnaissance, dependency waves, or independent review according to the evidence gap. |
 | [<code>edit-the-chain</code>](plugins/clanker-skills/skills/edit-the-chain/SKILL.md) | A non-trivial edit that needs owner and impact mapping. | Classifies the requested route as a short path, awkward parkour, or the wrong oracle, then binds review to the exact final candidate. |
@@ -276,7 +277,7 @@ AGENTS.md                                    Table-first output contract with wi
 plugins/clanker-skills/
 ├── .codex-plugin/plugin.json               Codex plugin identity and UI metadata
 ├── .claude-plugin/plugin.json              Claude Code plugin identity
-└── skills/<name>/                          Canonical source for all 19 skills
+└── skills/<name>/                          Canonical skill directories
     ├── SKILL.md                            Trigger and workflow contract
     ├── agents/openai.yaml                  Codex display metadata
     └── references|scripts|templates|...    Package-owned resources

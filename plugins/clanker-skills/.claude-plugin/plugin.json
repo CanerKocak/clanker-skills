@@ -1,6 +1,6 @@
 {
   "name": "clanker-skills",
-  "version": "0.5.2",
+  "version": "0.6.0",
   "description": "Evidence-first engineering workflows for Claude Code.",
   "author": {
     "name": "Caner Kocak",

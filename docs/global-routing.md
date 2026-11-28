@@ -27,6 +27,7 @@ Select the smallest installed workflow that matches the task. Read its
 decision. Scale planning and review to the change. Skills and feature flags
 do not authorize delegation or external actions; follow the active instructions.
 
+Use `$deepen-prompt` to strengthen a prompt for the same deliverable.
 Use `$writing-plans` for a multi-step specification before implementation.
 Use `$adaptive-code-orchestrator` when uncertain or cross-cutting work needs
 an execution strategy. For non-trivial code changes, `$edit-the-chain` owns
@@ -98,6 +99,7 @@ next decision. Scale planning and review to the change. Skills and feature
 flags do not authorize delegation or external actions; follow the active
 instructions.
 
+Use `clanker-skills:deepen-prompt` to strengthen a prompt for the same deliverable.
 Use `clanker-skills:writing-plans` for a multi-step specification before
 implementation. Use `clanker-skills:adaptive-code-orchestrator` when uncertain
 or cross-cutting work needs an execution strategy. For non-trivial code

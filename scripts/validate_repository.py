@@ -22,6 +22,7 @@ EXPECTED_SKILLS = (
     "ast-grep-callchain-audit",
     "call-chain-invariants",
     "codebase-search",
+    "deepen-prompt",
     "differential-review",
     "dimensional-analysis",
     "edit-the-chain",
