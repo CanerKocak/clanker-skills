@@ -1,0 +1,5 @@
+interface:
+  display_name: "Better English"
+  short_description: "Cut excess prose while preserving meaning and voice"
+  brand_color: "#D7FF64"
+  default_prompt: "Use $better-english to tighten this draft and keep my voice."

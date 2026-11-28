@@ -62,6 +62,8 @@ deletion test. Use `$simple-english` for technical prose with aircraft-manual
 clarity. Preserve facts, uncertainty, and the difference between requirements
 and recommendations. Do not apply this style to marketing or brand copy
 unless requested. Keep internal review notes out of the artifact.
+Use `$better-english` to cut filler and repeated ideas from a draft while
+preserving the writer's meaning and voice.
 
 Use `$i-have-adhd` only when the reader asks for it. It changes the shape of
 the reply, not the Clanker output contract: put the result or next action
@@ -139,6 +141,8 @@ Before editing or publishing durable prose, apply
 clarity. Preserve facts, uncertainty, and the difference between requirements
 and recommendations. Do not apply this style to marketing or brand copy unless
 requested. Keep internal review notes out of the artifact.
+Use `clanker-skills:better-english` to cut filler and repeated ideas from a
+draft while preserving the writer's meaning and voice.
 
 Use `clanker-skills:i-have-adhd` only when the reader asks for it. It changes
 the shape of the reply, not the Clanker output contract: put the result or next

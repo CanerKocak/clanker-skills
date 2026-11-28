@@ -11,7 +11,7 @@
     {
       "name": "clanker-skills",
       "source": "./plugins/clanker-skills",
-      "description": "21 evidence-first skills for prompt writing, planning, code review, call-chain analysis, financial and security audits, data quality, and clear technical writing.",
+      "description": "22 evidence-first skills for prompt writing, planning, code review, call-chain analysis, financial and security audits, data quality, and prose editing.",
       "category": "development"
     },
     {

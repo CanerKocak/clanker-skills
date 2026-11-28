@@ -20,6 +20,7 @@ EXPECTED_SKILLS = (
     "adaptive-code-orchestrator",
     "analyze-data-quality",
     "ast-grep-callchain-audit",
+    "better-english",
     "call-chain-invariants",
     "codebase-search",
     "deepen-prompt",
